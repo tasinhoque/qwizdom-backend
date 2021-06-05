@@ -16,6 +16,7 @@ export interface Participant {
 }
 
 export interface QuizResponse {
+  quiz: Types.ObjectId;
   stages: {
     stageId: Types.ObjectId;
     responses: Types.ObjectId[];
@@ -28,12 +29,26 @@ export interface Questioner {
 }
 
 export interface Quiz {
+  name: string;
   startTime: Date;
   duration: number;
   isPublished: boolean;
   isTest: boolean;
   categories: Types.ObjectId[];
   stages: Types.ObjectId[];
+  discussionThreads: Types.ObjectId[];
+  isManual: boolean;
+  description: string;
+  coverImage: string;
+  totalMarks: number;
+}
+
+export interface Notification {
+  text: string;
+  buttonText: string;
+
+  // link for the button
+  link: string;
 }
 
 export interface Stage {
@@ -48,7 +63,6 @@ export interface Category {
 
 export interface DiscussionThread {
   user: Types.ObjectId;
-  quiz: Types.ObjectId;
   text: string;
   comments: Types.ObjectId[];
 }
@@ -93,13 +107,14 @@ export interface Response {
   text: string;
   options: number[];
   file: string;
+  marks: number;
 }
 
 export interface Leaderboard {
-  totalScore: number;
+  quiz: Types.ObjectId;
   participants: {
     id: Types.ObjectId;
     rank: number;
-    score: number;
+    marks: number;
   }[];
 }
