@@ -18,21 +18,20 @@
 - GET /quizzes/:quizId/participant-count
 - GET /quizzes
 - GET /quizzes/search (query: q)
-- POST /quizzes
+- [ ] POST /quizzes
 - PATCH /quizzes/:quizId
 - DELETE /quizzes/:quizId
 - POST /quizzes/:quizId/publish
 
 ### Stage
 
-- POST /quizzes/:quizId/stages
+- [ ] POST /quizzes/:quizId/stages
 - DELETE /quizzes/:quizId/stages/:stageId
-- POST /quizzes/:quizId/stages/:stageId/questions
 
 ### Question
 
 - GET /quizzes/:quizId/stages/:stageId/questions
-- POST /quizzes/:quizId/stages/:stageId/questions
+- [ ] POST /quizzes/:quizId/stages/:stageId/questions
 - PATCH /quizzes/:quizId/stages/:stageId/questions/:questionId
 
 ### Leaderboard
@@ -42,7 +41,7 @@
 ### Review Routes
 
 - GET /quizzes/:quizId/reviews
-- POST /quizzes/:quizId/reviews
+- [ ] POST /quizzes/:quizId/reviews
 
 ### Discussion Thread
 
@@ -51,8 +50,8 @@
 ### Response
 
 - GET /responses/:responseId
-- POST /quizzes/:quizId/stages/:stageId/question/:questionId/responses
-- POST /quizzes/:quizId/stages/:stageId/responses
+- [ ] POST /quizzes/:quizId/stages/:stageId/question/:questionId/responses
+- [ ] POST /quizzes/:quizId/stages/:stageId/responses
 - POST /quizzes/:quizId/responses
 
 ## Question Routes
@@ -64,10 +63,10 @@
 ## Discussion Thread Routes
 
 - GET /discussion-threads/:discussionThreadId
-- POST /discussion-threads
+- [ ] POST /discussion-threads
 - PATCH /discussion-threads
 - DELETE /discussion-threads/:discussionThreadId
-- POST /discussion-threads/:discussionThreadId/comments
+- [ ] POST /discussion-threads/:discussionThreadId/comments
 - GET /discussion-threads/:discussionThreadId/comments
 - PATCH /discussion-threads/:discussionThreadId/comments/:commentId
 - DELETE /discussion-threads/:discussionThreadId/comments/:commentId
