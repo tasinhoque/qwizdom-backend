@@ -1,0 +1,23 @@
+const { Schema, model, SchemaTypes } = require('mongoose');
+
+const schema = Schema(
+  {
+    user: {
+      type: SchemaTypes.ObjectId,
+      required: true,
+      ref: 'User',
+    },
+    quiz: {
+      type: SchemaTypes.ObjectId,
+      required: true,
+      ref: 'Quiz',
+    },
+    rating: Number,
+    text: String,
+  },
+  { timestamps: true }
+);
+
+const Review = model('Review', schema);
+
+module.exports = Review;

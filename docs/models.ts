@@ -18,7 +18,7 @@ export interface Participant {
 export interface QuizResponse {
   quiz: Types.ObjectId;
   stages: {
-    stageId: Types.ObjectId;
+    stage: Types.ObjectId;
     responses: Types.ObjectId[];
   }[];
 }
@@ -37,7 +37,7 @@ export interface Quiz {
   categories: Types.ObjectId[];
   stages: Types.ObjectId[];
   discussionThreads: Types.ObjectId[];
-  isManual: boolean;
+  hasAutoEvaluation: boolean;
   description: string;
   coverImage: string;
   totalMarks: number;
@@ -45,9 +45,6 @@ export interface Quiz {
 
 export interface Notification {
   text: string;
-  buttonText: string;
-
-  // link for the button
   link: string;
 }
 
@@ -101,7 +98,7 @@ export interface Question {
   type: 'mcq' | 'checkbox' | 'fileUpload' | 'text' | 'fillInTheGaps' | 'trueOrFalse';
 }
 
-export interface Response {
+export interface QuestionResponse {
   user: Types.ObjectId;
   question: Types.ObjectId;
   text: string;
@@ -113,7 +110,7 @@ export interface Response {
 export interface Leaderboard {
   quiz: Types.ObjectId;
   participants: {
-    id: Types.ObjectId;
+    user: Types.ObjectId;
     rank: number;
     marks: number;
   }[];

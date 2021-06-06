@@ -1,2 +1,15 @@
-module.exports.Token = require('./token.model');
-module.exports.User = require('./user.model');
+module.exports.Token = require('./token');
+module.exports.User = require('./user');
+module.exports.Category = require('./category');
+module.exports.Comment = require('./comment');
+module.exports.DiscussionThread = require('./discussionThread');
+module.exports.Leaderboard = require('./leaderboard');
+module.exports.Notification = require('./notification');
+module.exports.Participant = require('./participant');
+module.exports.Question = require('./question');
+module.exports.Questioner = require('./questioner');
+module.exports.QuestionResponse = require('./questionResponse');
+module.exports.Quiz = require('./quiz');
+module.exports.QuizResponse = require('./quizResponse');
+module.exports.Review = require('./review');
+module.exports.Stage = require('./stage');
