@@ -1,12 +1,26 @@
-const { Schema, model, SchemaTypes } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const schema = Schema(
   {
-    user: {
-      type: SchemaTypes.ObjectId,
-      required: true,
+    serial: Number,
+    totalMarks: Number,
+    difficulty: Number,
+    title: String,
+    image: String,
+    options: [
+      {
+        isAnswer: Boolean,
+        text: String,
+        image: String,
+      },
+    ],
+    answer: String,
+    isObjective: Boolean,
+    canUploadFile: Boolean,
+    type: {
+      type: String,
+      enum: ['mcq', 'checkbox', 'fileUpload', 'text', 'fillInTheGaps', 'trueOrFalse'],
     },
-    text: String,
   },
   { timestamps: true }
 );
