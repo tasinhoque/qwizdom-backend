@@ -4,7 +4,7 @@
 
 - GET /users/finished-quizzes
 - GET /users/subscribed-quizzes
-- POST /users/quizzes/:quizId/flip-subscribe
+- POST /users/quizzes/:quizId/subscription/flip
 - GET /users/responses/:quizId
 - GET /users/draft-quizzes
 - GET /users/published-quizzes
@@ -15,26 +15,23 @@
 
 - GET /quizzes/:quizId
 - GET /quizzes/:quizId/average-rating
-- GET /quizzes/:quizId/participant-count
+- GET /quizzes/:quizId/participants/count
 - GET /quizzes
 - GET /quizzes/search (query: q)
 - [ ] POST /quizzes
-- [ ] PATCH /quizzes/:quizId
+- PATCH /quizzes/:quizId
 - DELETE /quizzes/:quizId
 - POST /quizzes/:quizId/publish
 
-### Stage
+### Stage Routes
 
 - [ ] POST /quizzes/:quizId/stages
-- DELETE /quizzes/:quizId/stages/:stageId
 
-### Question
+### Question Routes
 
 - GET /quizzes/:quizId/stages/:stageId/questions
-- [ ] POST /stages/:stageId/questions
-- DELETE /stages/:stageId/questions/:questionId
 
-### Leaderboard
+### Leaderboard Routes
 
 - GET /quizzes/:quizId/leaderboard
 
@@ -43,65 +40,75 @@
 - GET /quizzes/:quizId/reviews
 - [ ] POST /quizzes/:quizId/reviews
 
-### Discussion Thread
+### Discussion Thread Routes
 
 - GET /quizzes/:quizId/discussion-threads
+- [ ] POST /quizzes/:quizId/discussion-threads
 
-### Response
+### Quiz Response Routes
 
-- GET /responses/:responseId
-- [ ] POST /quizzes/:quizId/stages/:stageId/question/:questionId/responses
-- [ ] POST /quizzes/:quizId/stages/:stageId/responses
-- POST /quizzes/:quizId/responses
+- [ ] POST /quizzes/:quizId/responses (Corresponding leaderboard will be updated/created)
 
 ## Stage Routes
 
 - GET /stages/:stageId
-- [ ] PATCH /stages/:stageId
+- PATCH /stages/:stageId
+- DELETE /stages/:stageId
+
+### Question Routes
+
+- [ ] POST /stages/:stageId/questions
 
 ## Question Routes
 
-- GET /question/:questionId
-- [ ] PATCH /questions/:questionId
+- GET /questions/:questionId
+- PATCH /questions/:questionId
+- DELETE /questions/:questionId
+
+### Question Response Routes
+
+- GET /questions/:questionId/responses
+- [ ] POST /questions/:questionId/responses
 
 ## Discussion Thread Routes
 
 - GET /discussion-threads/:discussionThreadId
-- [ ] POST /quizzes/:quizId/discussion-threads
-- DELETE /quizzes/:quizId/discussion-threads/:discussionThreadId
+- DELETE /discussion-threads/:discussionThreadId
 - PATCH /discussion-threads/:discussionThreadId
+
+### Comment Routes
+
 - [ ] POST /discussion-threads/:discussionThreadId/comments
 - GET /discussion-threads/:discussionThreadId/comments
-- PATCH /discussion-threads/:discussionThreadId/comments/:commentId
-- DELETE /discussion-threads/:discussionThreadId/comments/:commentId
 
-## Response Routes
+## Comment Routes
 
-- PATCH /responses/:responseId
-- DELETE /responses/:responseId
+- GET /comments/:commentId
+- PATCH /comments/:commentId
+- DELETE /comments/:commentId
 
 ## Review Routes
 
+- GET /reviews/:reviewId
 - PATCH /reviews/:reviewId
 - DELETE /reviews/:reviewId
 
-## Quiz Creation Flow
+## Question Response Routes
 
-- Create quiz
-- Create stage with quiz ID
-- Create question with stage ID
+- GET /question-responses/:questionResponseId
+- PATCH /question-responses/:questionResponseId
+- DELETE /question-responses/:questionResponseId
 
-### Quiz Publishing
+## Quiz Response Routes
 
-We don't need to update any further.
+- GET /quiz-responses/:quizResponseId
+- PATCH /quiz-responses/:quizResponseId
+- DELETE /quiz-responses/:quizResponseId
 
-### Draft Quiz
+## Category Routes
 
-You may update your stages/questions later.
-
-- Update quiz
-- Delete quiz
-- Delete stage
-- Update stage
-- Delete question
-- Update question
+- POST /categories
+- GET /categories
+- GET /categories/:categoryId
+- PATCH /categories/:categoryId
+- DELETE /categories/:categoryId
