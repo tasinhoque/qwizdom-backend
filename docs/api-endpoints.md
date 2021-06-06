@@ -19,7 +19,7 @@
 - GET /quizzes
 - GET /quizzes/search (query: q)
 - [ ] POST /quizzes
-- PATCH /quizzes/:quizId
+- [ ] PATCH /quizzes/:quizId
 - DELETE /quizzes/:quizId
 - POST /quizzes/:quizId/publish
 
@@ -31,8 +31,8 @@
 ### Question
 
 - GET /quizzes/:quizId/stages/:stageId/questions
-- [ ] POST /quizzes/:quizId/stages/:stageId/questions
-- PATCH /quizzes/:quizId/stages/:stageId/questions/:questionId
+- [ ] POST /stages/:stageId/questions
+- DELETE /stages/:stageId/questions/:questionId
 
 ### Leaderboard
 
@@ -54,18 +54,22 @@
 - [ ] POST /quizzes/:quizId/stages/:stageId/responses
 - POST /quizzes/:quizId/responses
 
+## Stage Routes
+
+- GET /stages/:stageId
+- [ ] PATCH /stages/:stageId
+
 ## Question Routes
 
 - GET /question/:questionId
-- DELETE /question/:questionId
-- PATCH /questions/:questionId
+- [ ] PATCH /questions/:questionId
 
 ## Discussion Thread Routes
 
 - GET /discussion-threads/:discussionThreadId
-- [ ] POST /discussion-threads
-- PATCH /discussion-threads
-- DELETE /discussion-threads/:discussionThreadId
+- [ ] POST /quizzes/:quizId/discussion-threads
+- DELETE /quizzes/:quizId/discussion-threads/:discussionThreadId
+- PATCH /discussion-threads/:discussionThreadId
 - [ ] POST /discussion-threads/:discussionThreadId/comments
 - GET /discussion-threads/:discussionThreadId/comments
 - PATCH /discussion-threads/:discussionThreadId/comments/:commentId
@@ -80,3 +84,24 @@
 
 - PATCH /reviews/:reviewId
 - DELETE /reviews/:reviewId
+
+## Quiz Creation Flow
+
+- Create quiz
+- Create stage with quiz ID
+- Create question with stage ID
+
+### Quiz Publishing
+
+We don't need to update any further.
+
+### Draft Quiz
+
+You may update your stages/questions later.
+
+- Update quiz
+- Delete quiz
+- Delete stage
+- Update stage
+- Delete question
+- Update question
