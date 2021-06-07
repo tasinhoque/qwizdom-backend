@@ -14,7 +14,7 @@
 #### Quiz Response Routes
 
 - [x] POST /users/:userId/quizzes/:quizId/responses (Corresponding leaderboard will be updated/created)
-- [ ] GET /users/:userId/quizzes/:quizId/responses
+- GET /users/:userId/quizzes/:quizId/responses
 
 ## Question Response Routes
 

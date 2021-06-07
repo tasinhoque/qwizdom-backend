@@ -3,6 +3,6 @@ const responseRouter = require('./response');
 
 const router = Router({ mergeParams: true });
 
-responseRouter.use('/:quizId/responses', responseRouter);
+router.use('/:quizId/responses', responseRouter);
 
 module.exports = router;
