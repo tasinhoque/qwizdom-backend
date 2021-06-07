@@ -10,6 +10,18 @@
 - GET /users/published-quizzes
 - GET /users/:userId/published-quizzes
 
+### Quiz Routes
+
+### Quiz Response Routes
+
+- [x] POST /users/:userId/quizzes/:quizId/responses (Corresponding leaderboard will be updated/created)
+
+## Stage Routes
+
+### Question Response Routes
+
+- [ ] POST /users/:userId/questions/:questionId/responses
+
 ### Notification Routes
 
 - GET /users/notifications
@@ -48,10 +60,6 @@
 - GET /quizzes/:quizId/discussion-threads
 - [x] POST /quizzes/:quizId/discussion-threads
 
-### Quiz Response Routes
-
-- [x] POST /quizzes/:quizId/responses (Corresponding leaderboard will be updated/created)
-
 ## Stage Routes
 
 - GET /stages/:stageId
@@ -71,7 +79,6 @@
 ### Question Response Routes
 
 - GET /questions/:questionId/responses
-- [ ] POST /questions/:questionId/responses
 
 ## Discussion Thread Routes
 

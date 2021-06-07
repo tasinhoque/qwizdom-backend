@@ -3,16 +3,19 @@ import { Types } from 'mongoose';
 export interface User {
   name: string;
   email: string;
-}
+  isEmailVerified: string;
 
-export interface Participant {
-  user: Types.ObjectId;
+  // hashed
+  password: string;
 
   // QuizResponse
   finishedQuizzes: Types.ObjectId[];
 
   // Quiz
   subscribedQuizzes: Types.ObjectId[];
+
+  // Quiz
+  quizzes: Types.ObjectId[];
 }
 
 export interface QuizResponse {
@@ -21,11 +24,6 @@ export interface QuizResponse {
     stage: Types.ObjectId;
     responses: Types.ObjectId[];
   }[];
-}
-
-export interface Questioner {
-  user: Types.ObjectId;
-  quizzes: Types.ObjectId[];
 }
 
 export interface Quiz {

@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const { SchemaTypes, Schema, model } = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
 
-const userSchema = mongoose.Schema(
+const userSchema = Schema(
   {
     name: {
       type: String,
@@ -44,6 +44,24 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    finishedQuizzes: [
+      {
+        type: SchemaTypes.ObjectId,
+        ref: 'QuizResponse',
+      },
+    ],
+    subscribedQuizzes: [
+      {
+        type: SchemaTypes.ObjectId,
+        ref: 'Quiz',
+      },
+    ],
+    quizzes: [
+      {
+        type: SchemaTypes.ObjectId,
+        ref: 'Quiz',
+      },
+    ],
   },
   { timestamps: true }
 );
@@ -84,6 +102,6 @@ userSchema.pre('save', async function (next) {
 /**
  * @typedef User
  */
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;

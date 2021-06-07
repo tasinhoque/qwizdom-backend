@@ -5,8 +5,8 @@ const create = async (body) => {
   return stage;
 };
 
-const update = async (stageId, body) => {
-  const stage = await Stage.findByIdAndUpdate(stageId, body, { new: true });
+const update = async (stageId, updateBody) => {
+  const stage = await Stage.findByIdAndUpdate(stageId, updateBody, { new: true });
   return stage;
 };
 

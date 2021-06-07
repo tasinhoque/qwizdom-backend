@@ -5,8 +5,8 @@ const create = async (body) => {
   return quiz;
 };
 
-const update = async (quizId, body) => {
-  const quiz = await Quiz.findByIdAndUpdate(quizId, body, { new: true });
+const update = async (quizId, updateBody) => {
+  const quiz = await Quiz.findByIdAndUpdate(quizId, updateBody, { new: true });
   return quiz;
 };
 
