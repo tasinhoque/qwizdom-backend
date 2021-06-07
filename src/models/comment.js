@@ -1,7 +1,7 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
 const { toJSON } = require('./plugins');
 
-const schema = Schema(
+const commentSchema = Schema(
   {
     user: {
       type: SchemaTypes.ObjectId,
@@ -13,8 +13,8 @@ const schema = Schema(
   { timestamps: true }
 );
 
-schema.plugin(toJSON);
+commentSchema.plugin(toJSON);
 
-const Comment = model('Comment', schema);
+const Comment = model('Comment', commentSchema);
 
 module.exports = Comment;

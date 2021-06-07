@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const { toJSON } = require('./plugins');
 
-const schema = Schema(
+const categorySchema = Schema(
   {
     name: {
       type: String,
@@ -13,8 +13,8 @@ const schema = Schema(
   { timestamps: true }
 );
 
-schema.plugin(toJSON);
+categorySchema.plugin(toJSON);
 
-const Category = model('Category', schema);
+const Category = model('Category', categorySchema);
 
 module.exports = Category;

@@ -1,7 +1,7 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
 const { toJSON } = require('./plugins');
 
-const schema = Schema(
+const discussionThreadSchema = Schema(
   {
     user: {
       type: SchemaTypes.ObjectId,
@@ -19,8 +19,8 @@ const schema = Schema(
   { timestamps: true }
 );
 
-schema.plugin(toJSON);
+discussionThreadSchema.plugin(toJSON);
 
-const DiscussionThread = model('DiscussionThread', schema);
+const DiscussionThread = model('DiscussionThread', discussionThreadSchema);
 
 module.exports = DiscussionThread;

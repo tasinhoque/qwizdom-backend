@@ -1,7 +1,7 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
 const { toJSON } = require('./plugins');
 
-const schema = Schema(
+const leaderboardSchema = Schema(
   {
     quiz: {
       type: SchemaTypes.ObjectId,
@@ -22,8 +22,8 @@ const schema = Schema(
   { timestamps: true }
 );
 
-schema.plugin(toJSON);
+leaderboardSchema.plugin(toJSON);
 
-const Leaderboard = model('Leaderboard', schema);
+const Leaderboard = model('Leaderboard', leaderboardSchema);
 
 module.exports = Leaderboard;

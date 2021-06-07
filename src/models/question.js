@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const { toJSON } = require('./plugins');
 
-const schema = Schema(
+const questionSchema = Schema(
   {
     serial: Number,
     totalMarks: Number,
@@ -26,8 +26,8 @@ const schema = Schema(
   { timestamps: true }
 );
 
-schema.plugin(toJSON);
+questionSchema.plugin(toJSON);
 
-const Question = model('Question', schema);
+const Question = model('Question', questionSchema);
 
 module.exports = Question;

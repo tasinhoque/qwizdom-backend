@@ -46,7 +46,7 @@
 ### Discussion Thread Routes
 
 - GET /quizzes/:quizId/discussion-threads
-- [ ] POST /quizzes/:quizId/discussion-threads
+- [x] POST /quizzes/:quizId/discussion-threads
 
 ### Quiz Response Routes
 

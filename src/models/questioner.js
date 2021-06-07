@@ -1,7 +1,7 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
 const { toJSON } = require('./plugins');
 
-const schema = Schema(
+const questionerSchema = Schema(
   {
     user: {
       type: SchemaTypes.ObjectId,
@@ -18,8 +18,8 @@ const schema = Schema(
   { timestamps: true }
 );
 
-schema.plugin(toJSON);
+questionerSchema.plugin(toJSON);
 
-const Questioner = model('Questioner', schema);
+const Questioner = model('Questioner', questionerSchema);
 
 module.exports = Questioner;

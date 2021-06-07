@@ -1,7 +1,7 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
 const { toJSON } = require('./plugins');
 
-const schema = Schema(
+const quizSchema = Schema(
   {
     name: String,
     startTime: Date,
@@ -32,6 +32,12 @@ const schema = Schema(
         ref: 'DiscussionThread',
       },
     ],
+    reviews: [
+      {
+        type: SchemaTypes.ObjectId,
+        ref: 'Reviews',
+      },
+    ],
     hasAutoEvaluation: {
       type: Boolean,
       default: false,
@@ -43,8 +49,8 @@ const schema = Schema(
   { timestamps: true }
 );
 
-schema.plugin(toJSON);
+quizSchema.plugin(toJSON);
 
-const Quiz = model('Quiz', schema);
+const Quiz = model('Quiz', quizSchema);
 
 module.exports = Quiz;

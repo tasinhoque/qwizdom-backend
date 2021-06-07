@@ -1,13 +1,13 @@
 const { DiscussionThread } = require('../models');
 
 const create = async (body) => {
-  const response = await DiscussionThread.create(body);
-  return response;
+  const discussionThread = await DiscussionThread.create(body);
+  return discussionThread;
 };
 
 const update = async (discussionThreadId, body) => {
-  const response = await DiscussionThread.findByIdAndUpdate(discussionThreadId, body, { new: true });
-  return response;
+  const discussionThread = await DiscussionThread.findByIdAndUpdate(discussionThreadId, body, { new: true });
+  return discussionThread;
 };
 
 module.exports = {

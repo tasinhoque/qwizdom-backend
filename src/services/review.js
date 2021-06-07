@@ -1,13 +1,13 @@
 const { Review } = require('../models');
 
 const create = async (body) => {
-  const response = await Review.create(body);
-  return response;
+  const review = await Review.create(body);
+  return review;
 };
 
 const update = async (reviewId, body) => {
-  const response = await Review.findByIdAndUpdate(reviewId, body, { new: true });
-  return response;
+  const review = await Review.findByIdAndUpdate(reviewId, body, { new: true });
+  return review;
 };
 
 module.exports = {

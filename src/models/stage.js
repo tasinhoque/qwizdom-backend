@@ -1,7 +1,7 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
 const { toJSON } = require('./plugins');
 
-const schema = Schema(
+const stageSchema = Schema(
   {
     parent: {
       type: SchemaTypes.ObjectId,
@@ -17,8 +17,8 @@ const schema = Schema(
   { timestamps: true }
 );
 
-schema.plugin(toJSON);
+stageSchema.plugin(toJSON);
 
-const Stage = model('Stage', schema);
+const Stage = model('Stage', stageSchema);
 
 module.exports = Stage;
