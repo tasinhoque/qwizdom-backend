@@ -9,6 +9,9 @@
 - GET /users/draft-quizzes
 - GET /users/published-quizzes
 - GET /users/:userId/published-quizzes
+
+### Notification Routes
+
 - GET /users/notifications
 
 ## Quiz Routes
