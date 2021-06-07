@@ -18,7 +18,7 @@
 
 ### Question Response Routes
 
-- [ ] POST /users/:userId/questions/:questionId/responses
+- [x] POST /users/:userId/questions/:questionId/responses
 
 ### Notification Routes
 
@@ -66,7 +66,7 @@
 
 ### Question Routes
 
-- [ ] POST /stages/:stageId/questions
+- [x] POST /stages/:stageId/questions
 
 ## Question Routes
 

@@ -9,7 +9,7 @@ const quizRouter = require('./quiz');
 const router = express.Router();
 
 router.use('/:userId/notifications', notificationRouter);
-router.use('/:userId/questions', questionResponseRouter);
+router.use('/:userId/questions/:questionId/responses', questionResponseRouter);
 router.use('/:userId/quizzes', quizRouter);
 
 router
