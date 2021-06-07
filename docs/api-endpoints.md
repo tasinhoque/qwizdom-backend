@@ -16,7 +16,7 @@
 - [x] POST /users/:userId/quizzes/:quizId/responses (Corresponding leaderboard will be updated/created)
 - GET /users/:userId/quizzes/:quizId/responses
 
-## Question Response Routes
+### Question Response Routes
 
 - [ ] POST /users/:userId/questions/:questionId/responses
 
