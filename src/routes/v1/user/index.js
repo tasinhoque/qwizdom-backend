@@ -3,10 +3,14 @@ const { auth, validate } = require('../../../middlewares');
 const { userValidation } = require('../../../validations');
 const { userController } = require('../../../controllers');
 const notificationRouter = require('./notification');
+const questionResponseRouter = require('./questionResponse');
+const quizRouter = require('./quiz');
 
 const router = express.Router();
 
 router.use('/:userId/notifications', notificationRouter);
+router.use('/:userId/questions', questionResponseRouter);
+router.use('/:userId/quizzes', quizRouter);
 
 router
   .route('/')

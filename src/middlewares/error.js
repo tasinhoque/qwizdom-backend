@@ -3,7 +3,7 @@ const httpStatus = require('http-status');
 const { config, logger } = require('../config');
 const { ApiError } = require('../utils');
 
-const errorConverter = (err, req, res, next) => {
+const errorConverter = (err, _req, _res, next) => {
   let error = err;
   if (!(error instanceof ApiError)) {
     const statusCode =

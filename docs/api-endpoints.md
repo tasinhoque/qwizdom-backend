@@ -2,23 +2,21 @@
 
 ## User Routes
 
-- GET /users/finished-quizzes
-- GET /users/subscribed-quizzes
-- POST /users/quizzes/:quizId/subscription/flip
-- GET /users/responses/:quizId
-- GET /users/draft-quizzes
-- GET /users/published-quizzes
-- GET /users/:userId/published-quizzes
+- GET /users/:userId/quiz-responses
+- GET /users/:userId/quizzes/subscribed
+- GET /users/:userId/quizzes/draft
+- GET /users/:userId/quizzes/published
 
 ### Quiz Routes
 
-### Quiz Response Routes
+- POST /users/:userId/quizzes/:quizId/subscription/flip
+
+#### Quiz Response Routes
 
 - [x] POST /users/:userId/quizzes/:quizId/responses (Corresponding leaderboard will be updated/created)
+- [ ] GET /users/:userId/quizzes/:quizId/responses
 
-## Stage Routes
-
-### Question Response Routes
+## Question Response Routes
 
 - [ ] POST /users/:userId/questions/:questionId/responses
 

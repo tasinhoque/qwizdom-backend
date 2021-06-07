@@ -66,6 +66,11 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
+const update = async (userId, updateBody) => {
+  const user = await User.findByIdAndUpdate(userId, updateBody).orFail();
+  return user;
+};
+
 /**
  * Delete user by id
  * @param {ObjectId} userId
@@ -87,4 +92,5 @@ module.exports = {
   getUserByEmail,
   updateUserById,
   deleteUserById,
+  update,
 };

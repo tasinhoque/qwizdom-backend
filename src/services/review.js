@@ -6,7 +6,7 @@ const create = async (body) => {
 };
 
 const update = async (reviewId, updateBody) => {
-  const review = await Review.findByIdAndUpdate(reviewId, updateBody, { new: true });
+  const review = await Review.findByIdAndUpdate(reviewId, updateBody, { new: true }).orFail();
   return review;
 };
 

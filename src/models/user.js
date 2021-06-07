@@ -33,7 +33,9 @@ const userSchema = Schema(
           throw new Error('Password must contain at least one letter and one number');
         }
       },
-      private: true, // used by the toJSON plugin
+
+      // used by the toJSON plugin
+      private: true,
     },
     role: {
       type: String,
@@ -44,7 +46,7 @@ const userSchema = Schema(
       type: Boolean,
       default: false,
     },
-    finishedQuizzes: [
+    quizResponses: [
       {
         type: SchemaTypes.ObjectId,
         ref: 'QuizResponse',
@@ -56,7 +58,7 @@ const userSchema = Schema(
         ref: 'Quiz',
       },
     ],
-    quizzes: [
+    createdQuizzes: [
       {
         type: SchemaTypes.ObjectId,
         ref: 'Quiz',

@@ -6,7 +6,7 @@ const create = async (body) => {
 };
 
 const update = async (quizId, updateBody) => {
-  const quiz = await Quiz.findByIdAndUpdate(quizId, updateBody, { new: true });
+  const quiz = await Quiz.findByIdAndUpdate(quizId, updateBody, { new: true }).orFail();
   return quiz;
 };
 

@@ -6,7 +6,7 @@ const create = async (body) => {
 };
 
 const update = async (discussionThreadId, updateBody) => {
-  const discussionThread = await DiscussionThread.findByIdAndUpdate(discussionThreadId, updateBody, { new: true });
+  const discussionThread = await DiscussionThread.findByIdAndUpdate(discussionThreadId, updateBody, { new: true }).orFail();
   return discussionThread;
 };
 
