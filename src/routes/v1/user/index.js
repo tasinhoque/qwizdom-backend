@@ -1,16 +1,18 @@
-const express = require('express');
+const { Router } = require('express');
 const { auth, validate } = require('../../../middlewares');
 const { userValidation } = require('../../../validations');
 const { userController } = require('../../../controllers');
 const notificationRouter = require('./notification');
 const questionResponseRouter = require('./questionResponse');
+const commentRouter = require('./comment');
 const quizRouter = require('./quiz');
 
-const router = express.Router();
+const router = Router();
 
 router.use('/:userId/notifications', notificationRouter);
 router.use('/:userId/questions/:questionId/responses', questionResponseRouter);
 router.use('/:userId/quizzes', quizRouter);
+router.use('/:userId/discussion-threads/:discussionThreadId/comments', commentRouter);
 
 router
   .route('/')

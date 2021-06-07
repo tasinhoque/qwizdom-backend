@@ -3,6 +3,6 @@ const commentRouter = require('./comment');
 
 const router = Router();
 
-router.use('/:discussionThreadId', commentRouter);
+router.use('/:discussionThreadId/comments', commentRouter);
 
 module.exports = router;

@@ -11,6 +11,14 @@
 
 - POST /users/:userId/quizzes/:quizId/subscription/flip
 
+#### Discussion Thread Routes
+
+- [x] POST /users/:userId/quizzes/:quizId/discussion-threads
+
+### Comment Routes
+
+- [x] POST /users/:userId/discussion-threads/:discussionThreadId/comments
+
 #### Quiz Response Routes
 
 - [x] POST /users/:userId/quizzes/:quizId/responses (Corresponding leaderboard will be updated/created)
@@ -56,7 +64,6 @@
 ### Discussion Thread Routes
 
 - GET /quizzes/:quizId/discussion-threads
-- [x] POST /quizzes/:quizId/discussion-threads
 
 ## Stage Routes
 
@@ -86,7 +93,6 @@
 
 ### Comment Routes
 
-- [ ] POST /discussion-threads/:discussionThreadId/comments
 - GET /discussion-threads/:discussionThreadId/comments
 
 ## Comment Routes
