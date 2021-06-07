@@ -1,13 +1,13 @@
 const { Quiz } = require('../models');
 
 const create = async (body) => {
-  const quiz = await Quiz.create(body);
-  return quiz;
+  const response = await Quiz.create(body);
+  return response;
 };
 
 const update = async (quizId, body) => {
-  const quiz = await Quiz.findByIdAndUpdate(quizId, body, { new: true });
-  return quiz;
+  const response = await Quiz.findByIdAndUpdate(quizId, body, { new: true });
+  return response;
 };
 
 const addStage = async (quizId, stageId) => {

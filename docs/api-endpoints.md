@@ -41,7 +41,7 @@
 ### Review Routes
 
 - GET /quizzes/:quizId/reviews
-- [ ] POST /quizzes/:quizId/reviews
+- [x] POST /quizzes/:quizId/reviews
 
 ### Discussion Thread Routes
 
