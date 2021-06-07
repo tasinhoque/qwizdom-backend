@@ -4,18 +4,9 @@ export interface User {
   name: string;
   email: string;
   isEmailVerified: string;
-
-  // hashed
-  password: string;
-
-  // QuizResponse
-  finishedQuizzes: Types.ObjectId[];
-
-  // Quiz
+  quizResponses: Types.ObjectId[];
   subscribedQuizzes: Types.ObjectId[];
-
-  // Quiz
-  quizzes: Types.ObjectId[];
+  createdQuizzes: Types.ObjectId[];
 }
 
 export interface QuizResponse {

@@ -5,9 +5,7 @@ const Comment = require('./comment');
 const DiscussionThread = require('./discussionThread');
 const Leaderboard = require('./leaderboard');
 const Notification = require('./notification');
-const Participant = require('./participant');
 const Question = require('./question');
-const Questioner = require('./questioner');
 const QuestionResponse = require('./questionResponse');
 const Quiz = require('./quiz');
 const QuizResponse = require('./quizResponse');
@@ -22,9 +20,7 @@ module.exports = {
   DiscussionThread,
   Leaderboard,
   Notification,
-  Participant,
   Question,
-  Questioner,
   QuestionResponse,
   Quiz,
   Review,
