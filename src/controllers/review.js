@@ -4,7 +4,7 @@ const { reviewService, quizService } = require('../services');
 
 const create = catchAsync(async (req, res) => {
   const review = await reviewService.create(req.body);
-  await quizService.update(req.params.quizId, { $push: { stages: review.id } });
+  await quizService.update(req.params.quizId, { $push: { reviews: review.id } });
   res.status(httpStatus.CREATED).send(review);
 });
 

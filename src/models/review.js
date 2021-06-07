@@ -8,11 +8,6 @@ const reviewSchema = Schema(
       required: true,
       ref: 'User',
     },
-    quiz: {
-      type: SchemaTypes.ObjectId,
-      required: true,
-      ref: 'Quiz',
-    },
     rating: Number,
     text: String,
   },
