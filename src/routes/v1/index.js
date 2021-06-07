@@ -1,37 +1,37 @@
-const express = require('express');
-const authRoute = require('./auth');
-const userRoute = require('./user');
-const docsRoute = require('./docs');
-const quizRoute = require('./quiz');
-const categoryRoute = require('./category');
-const commentRoute = require('./comment');
-const discussionThreadRoute = require('./discussionThread');
-const questionRoute = require('./question');
-const questionResponseRoute = require('./questionResponse');
-const quizResponseRoute = require('./quizResponse');
-const reviewRoute = require('./review');
-const stageRoute = require('./stage');
-const notificationRoute = require('./user/notification');
+const { Router } = require('express');
+const authRouter = require('./auth');
+const userRouter = require('./user');
+const docsRouter = require('./docs');
+const quizRouter = require('./quiz');
+const categoryRouter = require('./category');
+const commentRouter = require('./comment');
+const discussionThreadRouter = require('./discussionThread');
+const questionRouter = require('./question');
+const questionResponseRouter = require('./questionResponse');
+const quizResponseRouter = require('./quizResponse');
+const reviewRouter = require('./review');
+const stageRouter = require('./stage');
+const notificationRouter = require('./user/notification');
 const { config } = require('../../config');
 
-const router = express.Router();
+const router = Router();
 
-router.use('/auth', authRoute);
-router.use('/users', userRoute);
-router.use('/quizzes', quizRoute);
-router.use('/categories', categoryRoute);
-router.use('/comments', commentRoute);
-router.use('/discussion-threads', discussionThreadRoute);
-router.use('/questions', questionRoute);
-router.use('/question-responses', questionResponseRoute);
-router.use('/quiz-responses', quizResponseRoute);
-router.use('/reviews', reviewRoute);
-router.use('/stages', stageRoute);
-router.use('/notifications', notificationRoute);
+router.use('/auth', authRouter);
+router.use('/users', userRouter);
+router.use('/quizzes', quizRouter);
+router.use('/categories', categoryRouter);
+router.use('/comments', commentRouter);
+router.use('/discussion-threads', discussionThreadRouter);
+router.use('/questions', questionRouter);
+router.use('/question-responses', questionResponseRouter);
+router.use('/quiz-responses', quizResponseRouter);
+router.use('/reviews', reviewRouter);
+router.use('/stages', stageRouter);
+router.use('/notifications', notificationRouter);
 
 /* istanbul ignore next */
 if (config.env === 'development') {
-  router.use('/docs', docsRoute);
+  router.use('/docs', docsRouter);
 }
 
 module.exports = router;

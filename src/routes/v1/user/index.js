@@ -2,11 +2,11 @@ const express = require('express');
 const { auth, validate } = require('../../../middlewares');
 const { userValidation } = require('../../../validations');
 const { userController } = require('../../../controllers');
-const notificationRoute = require('./notification');
+const notificationRouter = require('./notification');
 
 const router = express.Router();
 
-router.use('/:userId/notifications', notificationRoute);
+router.use('/:userId/notifications', notificationRouter);
 
 router
   .route('/')

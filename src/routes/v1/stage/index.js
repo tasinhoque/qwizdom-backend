@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const questionRoute = require('./question');
+const questionRouter = require('./question');
 
 const router = Router();
 
-router.use('/:stageId/questions', questionRoute);
+router.use('/:stageId/questions', questionRouter);
 
 module.exports = router;

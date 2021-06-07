@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const commentRoute = require('./comment');
+const commentRouter = require('./comment');
 
 const router = Router();
 
-router.use('/:discussionThreadId', commentRoute);
+router.use('/:discussionThreadId', commentRouter);
 
 module.exports = router;

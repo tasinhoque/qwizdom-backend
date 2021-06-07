@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const questionRoute = require('./question');
+const questionRouter = require('./question');
 const { stageController } = require('../../../../controllers');
 
 const router = Router({ mergeParams: true });
 
-router.use('/:stageId/questions', questionRoute);
+router.use('/:stageId/questions', questionRouter);
 
 router.post('/', stageController.create);
 
