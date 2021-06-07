@@ -48,6 +48,16 @@ const flipSubscription = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const getSubscribedQuizzes = catchAsync(async (req, res) => {
+  const user = await userService.getUserById(req.params.userId, 'subscribedQuizzes');
+  res.status(httpStatus.OK).send(user.subscribedQuizzes);
+});
+
+const getQuizResponses = catchAsync(async (req, res) => {
+  const user = await userService.getUserById(req.params.userId, 'quizResponses');
+  res.status(httpStatus.OK).send(user.quizResponses);
+});
+
 module.exports = {
   createUser,
   getUsers,
@@ -55,4 +65,6 @@ module.exports = {
   updateUser,
   deleteUser,
   flipSubscription,
+  getSubscribedQuizzes,
+  getQuizResponses,
 };

@@ -34,7 +34,7 @@ const queryUsers = async (filter, options) => {
  * @param {ObjectId} id
  * @returns {Promise<User>}
  */
-const getUserById = async (id) => User.findById(id).orFail();
+const getUserById = async (id, populate = '') => User.findById(id).populate(populate).orFail();
 
 /**
  * Get user by email
