@@ -1,14 +1,8 @@
 const { Question } = require('../models');
 
-const create = async (body) => {
-  const question = await Question.create(body);
-  return question;
-};
+const create = async (body) => Question.create(body);
 
-const update = async (questionId, updateBody) => {
-  const question = await Question.findByIdAndUpdate(questionId, updateBody, { new: true }).orFail();
-  return question;
-};
+const update = async (questionId, updateBody) => Question.findByIdAndUpdate(questionId, updateBody, { new: true }).orFail();
 
 module.exports = {
   create,

@@ -34,9 +34,7 @@ const queryUsers = async (filter, options) => {
  * @param {ObjectId} id
  * @returns {Promise<User>}
  */
-const getUserById = async (id) => {
-  return User.findById(id);
-};
+const getUserById = async (id) => User.findById(id).orFail();
 
 /**
  * Get user by email
@@ -66,10 +64,7 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
-const update = async (userId, updateBody) => {
-  const user = await User.findByIdAndUpdate(userId, updateBody).orFail();
-  return user;
-};
+const update = async (userId, updateBody) => User.findByIdAndUpdate(userId, updateBody).orFail();
 
 /**
  * Delete user by id

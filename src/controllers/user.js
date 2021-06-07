@@ -32,10 +32,27 @@ const deleteUser = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const flipSubscription = catchAsync(async (req, res) => {
+  const user = await userService.getUserById(req.params.userId);
+
+  let update = {};
+  const innerContent = { subscribedQuizzes: req.params.quizId };
+
+  if (user.subscribedQuizzes.includes(req.params.quizId)) {
+    update = { $pull: innerContent };
+  } else {
+    update = { $push: innerContent };
+  }
+
+  await userService.update(req.params.userId, update);
+  res.status(httpStatus.NO_CONTENT).send();
+});
+
 module.exports = {
   createUser,
   getUsers,
   getUser,
   updateUser,
   deleteUser,
+  flipSubscription,
 };

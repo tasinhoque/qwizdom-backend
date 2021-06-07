@@ -3,13 +3,13 @@
 ## User Routes
 
 - GET /users/:userId/quiz-responses
-- GET /users/:userId/quizzes/subscribed
+- [ ] GET /users/:userId/quizzes/subscribed
 - GET /users/:userId/quizzes/draft
 - GET /users/:userId/quizzes/published
 
 ### Quiz Routes
 
-- POST /users/:userId/quizzes/:quizId/subscription/flip
+- [x] POST /users/:userId/quizzes/:quizId/subscription/flip
 
 #### Discussion Thread Routes
 

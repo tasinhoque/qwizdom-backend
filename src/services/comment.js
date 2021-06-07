@@ -1,14 +1,8 @@
 const { Comment } = require('../models');
 
-const create = async (body) => {
-  const comment = await Comment.create(body);
-  return comment;
-};
+const create = async (body) => Comment.create(body);
 
-const update = async (commentId, updateBody) => {
-  const comment = await Comment.findByIdAndUpdate(commentId, updateBody, { new: true }).orFail();
-  return comment;
-};
+const update = async (commentId, updateBody) => Comment.findByIdAndUpdate(commentId, updateBody, { new: true }).orFail();
 
 module.exports = {
   create,
