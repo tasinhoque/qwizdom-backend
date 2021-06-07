@@ -21,14 +21,14 @@
 - GET /quizzes/:quizId/participants/count
 - GET /quizzes
 - GET /quizzes/search (query: q)
-- [ ] POST /quizzes
+- [x] POST /quizzes
 - PATCH /quizzes/:quizId
 - DELETE /quizzes/:quizId
 - POST /quizzes/:quizId/publish
 
 ### Stage Routes
 
-- [ ] POST /quizzes/:quizId/stages
+- [x] POST /quizzes/:quizId/stages
 
 ### Question Routes
 

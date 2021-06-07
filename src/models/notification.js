@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { toJSON } = require('./plugins');
 
 const schema = Schema(
   {
@@ -7,6 +8,8 @@ const schema = Schema(
   },
   { timestamps: true }
 );
+
+schema.plugin(toJSON);
 
 const Notification = model('Notification', schema);
 

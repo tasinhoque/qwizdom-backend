@@ -1,4 +1,5 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
+const { toJSON } = require('./plugins');
 
 const schema = Schema(
   {
@@ -20,6 +21,8 @@ const schema = Schema(
   },
   { timestamps: true }
 );
+
+schema.plugin(toJSON);
 
 const Leaderboard = model('Leaderboard', schema);
 

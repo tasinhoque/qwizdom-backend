@@ -1,15 +1,7 @@
-[
-  {
-    "name": "something",
-    "startTime": "21-4-24",
-    "duration": 50,
-    "isPublished": false,
-    "isTest": false,
-    "categories": ["60bc73357fbd90320884f1e6"],
-    "stages": ["60bc887584a7f518cd2151f2"],
-    "discussionThreads": [],
-    "hasAutoEvaluation": false,
-    "description": "A random description",
-    "coverImage": "www.avatar.ui/50"
-  }
-]
+{
+  "name": "Web Development Fundamentals",
+  "startTime": "2021-4-24",
+  "duration": 50,
+  "description": "This is a quiz to hone your skills.",
+  "coverImage": "www.avatar.ui/50"
+}

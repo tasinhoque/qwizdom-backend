@@ -1,12 +1,19 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
+const { toJSON } = require('./plugins');
 
 const schema = Schema(
   {
     name: String,
     startTime: Date,
     duration: Number,
-    isPublished: Boolean,
-    isTest: Boolean,
+    isPublished: {
+      type: Boolean,
+      default: false,
+    },
+    isTest: {
+      type: Boolean,
+      default: false,
+    },
     categories: [
       {
         type: SchemaTypes.ObjectId,
@@ -25,13 +32,18 @@ const schema = Schema(
         ref: 'DiscussionThread',
       },
     ],
-    hasAutoEvaluation: Boolean,
+    hasAutoEvaluation: {
+      type: Boolean,
+      default: false,
+    },
     description: String,
     coverImage: String,
     totalMarks: Number,
   },
   { timestamps: true }
 );
+
+schema.plugin(toJSON);
 
 const Quiz = model('Quiz', schema);
 

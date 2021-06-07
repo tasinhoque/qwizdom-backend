@@ -7,6 +7,12 @@ const create = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(user);
 });
 
+const update = catchAsync(async (req, res) => {
+  const user = await quizService.update(req.params.quizId, req.body);
+  res.status(httpStatus.OK).send(user);
+});
+
 module.exports = {
   create,
+  update,
 };
