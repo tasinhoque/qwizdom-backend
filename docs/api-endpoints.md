@@ -93,7 +93,7 @@
 
 ### Comment Routes
 
-- GET /discussion-threads/:discussionThreadId/comments
+- [ ] GET /discussion-threads/:discussionThreadId/comments
 
 ## Comment Routes
 
