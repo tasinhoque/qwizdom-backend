@@ -45,6 +45,10 @@ const quizSchema = Schema(
     description: String,
     coverImage: String,
     totalMarks: Number,
+    leaderboard: {
+      type: SchemaTypes.ObjectId,
+      ref: 'Leaderboard',
+    },
   },
   { timestamps: true }
 );

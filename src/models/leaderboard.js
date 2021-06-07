@@ -3,11 +3,6 @@ const { toJSON } = require('./plugins');
 
 const leaderboardSchema = Schema(
   {
-    quiz: {
-      type: SchemaTypes.ObjectId,
-      required: true,
-      ref: 'Quiz',
-    },
     participants: [
       {
         user: {

@@ -50,7 +50,7 @@
 
 ### Quiz Response Routes
 
-- [ ] POST /quizzes/:quizId/responses (Corresponding leaderboard will be updated/created)
+- [x] POST /quizzes/:quizId/responses (Corresponding leaderboard will be updated/created)
 
 ## Stage Routes
 
