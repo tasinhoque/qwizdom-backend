@@ -58,6 +58,19 @@ const getQuizResponses = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(user.quizResponses);
 });
 
+const getCreatedQuizzes = catchAsync(async (req, res) => {
+  const user = await userService.getUserById(req.params.userId, 'createdQuizzes');
+  let result = [];
+
+  if (req.originalUrl.endsWith('draft')) {
+    result = user.createdQuizzes.filter((quiz) => quiz.isPublished === false);
+  } else {
+    result = user.createdQuizzes.filter((quiz) => quiz.isPublished === true);
+  }
+
+  res.status(httpStatus.OK).send(result);
+});
+
 module.exports = {
   createUser,
   getUsers,
@@ -67,4 +80,5 @@ module.exports = {
   flipSubscription,
   getSubscribedQuizzes,
   getQuizResponses,
+  getCreatedQuizzes,
 };

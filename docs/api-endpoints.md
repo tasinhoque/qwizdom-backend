@@ -8,8 +8,8 @@
 
 - [x] POST /users/:userId/quizzes/:quizId/subscription/flip
 - [x] GET /users/:userId/quizzes/subscribed
-- GET /users/:userId/quizzes/draft
-- GET /users/:userId/quizzes/published
+- [x] GET /users/:userId/quizzes/draft
+- [x] GET /users/:userId/quizzes/published
 
 #### Discussion Thread Routes
 
