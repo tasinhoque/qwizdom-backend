@@ -1,3 +1,9 @@
-module.exports.authController = require('./auth.controller');
-module.exports.userController = require('./user.controller');
-module.exports.quizController = require('./quiz');
+const authController = require('./auth');
+const userController = require('./user');
+const quizController = require('./quiz');
+
+module.exports = {
+  authController,
+  userController,
+  quizController,
+};

@@ -221,7 +221,7 @@ The app has a centralized error handling mechanism.
 Controllers should try to catch the errors and forward them to the error handling middleware (by calling `next(error)`). For convenience, you can also wrap the controller inside the catchAsync utility wrapper, which forwards the error.
 
 ```javascript
-const catchAsync = require('../utils/catchAsync');
+const { catchAsync } = require('../utils');
 
 const controller = catchAsync(async (req, res) => {
   // this error will be forwarded to the error handling middleware
@@ -246,7 +246,7 @@ For example, if you are trying to get a user from the DB who is not found, and y
 
 ```javascript
 const httpStatus = require('http-status');
-const ApiError = require('../utils/ApiError');
+const { ApiError } = require('../utils');
 const User = require('../models/User');
 
 const getUser = async (userId) => {

@@ -5,14 +5,12 @@ const httpMocks = require('node-mocks-http');
 const moment = require('moment');
 const bcrypt = require('bcryptjs');
 const app = require('../../src/app');
-const config = require('../../src/config/config');
+const { config, roleRights, tokenTypes } = require('../../src/config');
 const auth = require('../../src/middlewares/auth');
 const { tokenService, emailService } = require('../../src/services');
-const ApiError = require('../../src/utils/ApiError');
+const { ApiError } = require('../../src/utils');
 const setupTestDB = require('../utils/setupTestDB');
 const { User, Token } = require('../../src/models');
-const { roleRights } = require('../../src/config/roles');
-const { tokenTypes } = require('../../src/config/tokens');
 const { userOne, admin, insertUsers } = require('../fixtures/user.fixture');
 const { userOneAccessToken, adminAccessToken } = require('../fixtures/token.fixture');
 
