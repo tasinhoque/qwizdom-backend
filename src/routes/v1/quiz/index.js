@@ -18,8 +18,8 @@ router.use('/:quizId/reviews', reviewRouter);
 router.route('/').get(auth, quizController.get).post(auth, quizController.create);
 
 router.get('/subscribed', auth, userController.getSubscribedQuizzes);
-router.get('/published', auth, userController.getCreatedQuizzes);
-router.get('/draft', auth, userController.getCreatedQuizzes);
+router.get('/published', auth, quizController.getByCreator);
+router.get('/draft', auth, quizController.getByCreator);
 router.post('/:quizId/subscription/flip', auth, userController.flipSubscription);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { pick, ApiError, catchAsync } = require('../utils');
-const { userService, quizResponseService, quizService } = require('../services');
+const { userService } = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -53,24 +53,6 @@ const getSubscribedQuizzes = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(user.subscribedQuizzes);
 });
 
-const getQuizResponses = catchAsync(async (req, res) => {
-  const quizResponses = await quizResponseService.getByUser(req.user.id);
-  res.status(httpStatus.OK).send(quizResponses);
-});
-
-const getCreatedQuizzes = catchAsync(async (req, res) => {
-  const quizzes = await quizService.getByUser(req.user.id);
-  let results = [];
-
-  if (req.originalUrl.endsWith('draft')) {
-    results = quizzes.filter((quiz) => quiz.isPublished === false);
-  } else {
-    results = quizzes.filter((quiz) => quiz.isPublished === true);
-  }
-
-  res.status(httpStatus.OK).send(results);
-});
-
 module.exports = {
   createUser,
   getUsers,
@@ -79,6 +61,4 @@ module.exports = {
   deleteUser,
   flipSubscription,
   getSubscribedQuizzes,
-  getQuizResponses,
-  getCreatedQuizzes,
 };

@@ -23,8 +23,22 @@ const get = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(quizzes);
 });
 
+const getByCreator = catchAsync(async (req, res) => {
+  const filter = {};
+
+  if (req.originalUrl.endsWith('draft')) {
+    filter.isPublished = false;
+  } else {
+    filter.isPublished = true;
+  }
+
+  const quizzes = await quizService.getByCreator(req.user.id, filter);
+  res.status(httpStatus.OK).send(quizzes);
+});
+
 module.exports = {
   create,
   update,
   get,
+  getByCreator,
 };

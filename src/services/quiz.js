@@ -6,7 +6,7 @@ const update = async (id, updateBody) => Quiz.findByIdAndUpdate(id, updateBody, 
 
 const get = async (filters, options) => Quiz.paginate(filters, options);
 
-const getByUser = async (userId) => Quiz.find({ creator: userId });
+const getByCreator = async (userId, filter) => Quiz.find({ ...filter, creator: userId });
 
 const getPreviews = async (filters, options) => Quiz.paginate(filters, options);
 
@@ -14,6 +14,6 @@ module.exports = {
   create,
   update,
   get,
-  getByUser,
+  getByCreator,
   getPreviews,
 };
