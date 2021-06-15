@@ -18,8 +18,26 @@ const update = catchAsync(async (req, res) => {
 });
 
 const get = catchAsync(async (req, res) => {
-  const { page, limit } = req.query;
-  const quizzes = await quizService.get({}, { page, limit, populate: 'creator' });
+  const { page, limit, isTest, isTimeBound, isScheduled } = req.query;
+  const filter = {
+    isTest,
+    duration: { $exists: isTimeBound },
+    startTime: { $exists: isScheduled },
+  };
+
+  if (isTest === undefined) {
+    delete filter.isTest;
+  }
+
+  if (isTimeBound === undefined) {
+    delete filter.duration;
+  }
+
+  if (isScheduled === undefined) {
+    delete filter.startTime;
+  }
+
+  const quizzes = await quizService.get(filter, { page, limit, populate: 'creator' });
   res.status(httpStatus.OK).send(quizzes);
 });
 

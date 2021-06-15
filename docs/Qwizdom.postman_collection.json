@@ -1,0 +1,823 @@
+{
+	"info": {
+		"_postman_id": "dfc9ffc5-3e7a-4f8d-98d7-39a77ce81b27",
+		"name": "Qwizdom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Tasin Hoque\",\r\n  \"email\": \"tasinhoque@gmail.com\",\r\n  \"password\": \"memento-mori-0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/register",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const { tokens: { access } } = JSON.parse(responseBody);\r",
+							"pm.globals.set(\"token\", access.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"tasinhoque@gmail.com\",\r\n  \"password\": \"memento-mori-0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users?page=1&limit=5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "60c8b56a95d97f39483bc948"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "60be2be787a7852330151954"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"avatar\": \"https://i.pravatar.cc/128\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "60c8b56a95d97f39483bc948"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Quiz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"creator\": \"60c1abad46b3f619c762b66b\",\r\n  \"name\": \"Web Development Fundamentals\",\r\n  \"startTime\": \"2021-4-24\",\r\n  \"duration\": 50,\r\n  \"description\": \"This is a quiz to hone your skills.\",\r\n  \"coverImage\": \"www.avatar.ui/50\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/quizzes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"quizzes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Quizzes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/quizzes?page=1&limit=5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"quizzes"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"parent\": \"60bd982945ebfe31b0926b8a\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/quizzes/:quizId/stages",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"quizzes",
+						":quizId",
+						"stages"
+					],
+					"variable": [
+						{
+							"key": "quizId",
+							"value": "60bd95923e4992098cd15e7d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": \"60bc73357fbd90320884f1e6\",\r\n  \"rating\": 5,\r\n  \"text\": \"Good\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/quizzes/:quizId/reviews",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"quizzes",
+						":quizId",
+						"reviews"
+					],
+					"variable": [
+						{
+							"key": "quizId",
+							"value": "60bd95923e4992098cd15e7d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Discussion Thread",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": \"60bc73357fbd90320884f1e6\",\r\n  \"text\": \"What is a prototype?\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/quizzes/:quizId/discussion-threads",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"quizzes",
+						":quizId",
+						"discussion-threads"
+					],
+					"variable": [
+						{
+							"key": "quizId",
+							"value": "60bd95923e4992098cd15e7d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Quiz Response",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/quizzes/:quizId/responses",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"quizzes",
+						":quizId",
+						"responses"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "60bc73357fbd90320884f1e6"
+						},
+						{
+							"key": "quizId",
+							"value": "60bd95923e4992098cd15e7d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"How big is earth?\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/stages/:stageId/questions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"stages",
+						":stageId",
+						"questions"
+					],
+					"variable": [
+						{
+							"key": "stageId",
+							"value": "60bda269d04f71170c2de724"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question Response",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"Very big.\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/questions/:questionId/responses",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"questions",
+						":questionId",
+						"responses"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "60bc73357fbd90320884f1e6"
+						},
+						{
+							"key": "questionId",
+							"value": "60bdc55fa9c0553d0ca55136"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"Nice\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/discussion-threads/:discussionThreadId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"discussion-threads",
+						":discussionThreadId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "60bc73357fbd90320884f1e6"
+						},
+						{
+							"key": "discussionThreadId",
+							"value": "60bdae891bcc9948e077bfdf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flip Subscription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"Nice\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/quizzes/:quizId/subscription/flip",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"quizzes",
+						":quizId",
+						"subscription",
+						"flip"
+					],
+					"variable": [
+						{
+							"key": "quizId",
+							"value": "60c8b649b1163904e4f9d6da"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Quiz Responses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/quiz-responses",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"quiz-responses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Draft Quizzes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/quizzes/draft",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"quizzes",
+						"draft"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "60bc73357fbd90320884f1e6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subscribed Quizzes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/quizzes?isTimeBound=true&isScheduled=true&isTest=false",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"quizzes"
+					],
+					"query": [
+						{
+							"key": "isTimeBound",
+							"value": "true"
+						},
+						{
+							"key": "isScheduled",
+							"value": "true"
+						},
+						{
+							"key": "isTest",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Published Quizzes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/quizzes/published",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"quizzes",
+						"published"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "60bc73357fbd90320884f1e6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Comments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/discussion-threads/:discussionThreadId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"discussion-threads",
+						":discussionThreadId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "discussionThreadId",
+							"value": "60bdae891bcc9948e077bfdf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Discussion Thread",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/discussion-threads/:discussionThreadId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"discussion-threads",
+						":discussionThreadId"
+					],
+					"variable": [
+						{
+							"key": "discussionThreadId",
+							"value": "60bdae891bcc9948e077bfdf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MGJkOTIyMDZiN2I1ZTI3MDgwZDRkZjYiLCJpYXQiOjE2MjMwNzUyMDEsImV4cCI6MTYyNTY2NzIwMSwidHlwZSI6InJlZnJlc2gifQ.AIEVN8c3MF1HA9sPO7HqaqLlKgrevkY0Esfq4t_nwg0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/refresh-tokens",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"refresh-tokens"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/v1"
+		}
+	]
+}
