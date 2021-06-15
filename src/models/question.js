@@ -5,7 +5,7 @@ const questionSchema = Schema(
   {
     stage: {
       type: SchemaTypes.ObjectId,
-      ref: 'Stage',
+      ref: 'stage',
     },
     serial: Number,
     totalMarks: Number,
@@ -32,6 +32,6 @@ const questionSchema = Schema(
 
 questionSchema.plugin(toJSON);
 
-const Question = model('Question', questionSchema);
+const Question = model('question', questionSchema);
 
 module.exports = Question;

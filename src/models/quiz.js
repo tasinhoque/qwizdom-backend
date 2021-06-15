@@ -6,7 +6,7 @@ const quizSchema = Schema(
     creator: {
       type: SchemaTypes.ObjectId,
       required: true,
-      ref: 'User',
+      ref: 'user',
     },
     name: String,
     startTime: Date,
@@ -22,7 +22,7 @@ const quizSchema = Schema(
     categories: [
       {
         type: SchemaTypes.ObjectId,
-        ref: 'Category',
+        ref: 'category',
       },
     ],
     hasAutoEvaluation: {

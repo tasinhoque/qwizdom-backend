@@ -19,7 +19,7 @@ const update = catchAsync(async (req, res) => {
 
 const get = catchAsync(async (req, res) => {
   const { page, limit } = req.query;
-  const quizzes = await quizService.get({}, { page, limit });
+  const quizzes = await quizService.get({}, { page, limit, populate: 'creator' });
   res.status(httpStatus.OK).send(quizzes);
 });
 
