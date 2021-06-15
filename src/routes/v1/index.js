@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const authRouter = require('./auth');
 const userRouter = require('./user');
-const docsRouter = require('./docs');
 const quizRouter = require('./quiz');
 const categoryRouter = require('./category');
 const commentRouter = require('./comment');
@@ -11,7 +10,6 @@ const questionResponseRouter = require('./questionResponse');
 const quizResponseRouter = require('./quizResponse');
 const reviewRouter = require('./review');
 const stageRouter = require('./stage');
-const { config } = require('../../config');
 
 const router = Router();
 
@@ -26,10 +24,5 @@ router.use('/question-responses', questionResponseRouter);
 router.use('/quiz-responses', quizResponseRouter);
 router.use('/reviews', reviewRouter);
 router.use('/stages', stageRouter);
-
-/* istanbul ignore next */
-if (config.env === 'development') {
-  router.use('/docs', docsRouter);
-}
 
 module.exports = router;
