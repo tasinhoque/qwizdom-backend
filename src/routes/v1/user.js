@@ -5,10 +5,7 @@ const { userController } = require('../../controllers');
 
 const router = Router();
 
-router
-  .route('/')
-  .post(auth, validate(userValidation.createUser), userController.createUser)
-  .get(auth, validate(userValidation.getUsers), userController.getUsers);
+router.route('/').get(auth, validate(userValidation.getUsers), userController.getUsers);
 
 router
   .route('/:userId')
