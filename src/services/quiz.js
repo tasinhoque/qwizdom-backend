@@ -6,7 +6,7 @@ const update = async (id, updateBody) => Quiz.findByIdAndUpdate(id, updateBody, 
 
 const get = async (filters, options) => Quiz.paginate(filters, options);
 
-const getByCreator = async (userId, filter) => Quiz.find({ ...filter, creator: userId });
+const getByCreator = async (userId, filter) => Quiz.paginate({ ...filter, creator: userId });
 
 const getPreviews = async (filters, options) => Quiz.paginate(filters, options);
 

@@ -49,8 +49,23 @@ const flipSubscription = catchAsync(async (req, res) => {
 });
 
 const getSubscribedQuizzes = catchAsync(async (req, res) => {
+  const page = req.query.page || 1;
+  const limit = req.query.limit || 10;
+
   const user = await userService.getUserById(req.user.id, 'subscribedQuizzes');
-  res.status(httpStatus.OK).send(user.subscribedQuizzes);
+
+  let results = user.subscribedQuizzes;
+  const totalResults = results.length;
+  results = results.slice((page - 1) * limit, page * limit);
+  const totalPages = Math.ceil(totalResults / limit);
+
+  res.status(httpStatus.OK).send({
+    results,
+    page,
+    limit,
+    totalPages,
+    totalResults,
+  });
 });
 
 module.exports = {
