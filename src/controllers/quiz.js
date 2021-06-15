@@ -1,12 +1,15 @@
 const httpStatus = require('http-status');
 const { catchAsync } = require('../utils');
-const { logger } = require('../config');
 const { quizService } = require('../services');
 
 const create = catchAsync(async (req, res) => {
-  logger.info(JSON.stringify({ user: req.user }));
-  // const quiz = await quizService.create(req.body);
-  res.status(httpStatus.CREATED).send(req.user);
+  const body = {
+    ...req.body,
+    creator: req.user.id,
+  };
+
+  const quiz = await quizService.create(body);
+  res.status(httpStatus.CREATED).send(quiz);
 });
 
 const update = catchAsync(async (req, res) => {
