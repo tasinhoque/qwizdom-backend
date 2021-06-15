@@ -6,21 +6,19 @@ const discussionThreadSchema = Schema(
     user: {
       type: SchemaTypes.ObjectId,
       required: true,
-      ref: 'User',
+      ref: 'user',
+    },
+    quiz: {
+      type: SchemaTypes.ObjectId,
+      ref: 'quiz',
     },
     text: String,
-    comments: [
-      {
-        type: SchemaTypes.ObjectId,
-        ref: 'Comment',
-      },
-    ],
   },
   { timestamps: true }
 );
 
 discussionThreadSchema.plugin(toJSON);
 
-const DiscussionThread = model('DiscussionThread', discussionThreadSchema);
+const DiscussionThread = model('discussion-thread', discussionThreadSchema);
 
 module.exports = DiscussionThread;

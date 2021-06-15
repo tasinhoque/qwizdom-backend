@@ -1,10 +1,14 @@
 const httpStatus = require('http-status');
 const { catchAsync } = require('../utils');
-const { discussionThreadService, quizService } = require('../services');
+const { discussionThreadService } = require('../services');
 
 const create = catchAsync(async (req, res) => {
-  const discussionThread = await discussionThreadService.create(req.body);
-  await quizService.update(req.params.quizId, { $push: { discussionThreads: discussionThread.id } });
+  const body = {
+    ...req.body,
+    quiz: req.params.quizId,
+  };
+
+  const discussionThread = await discussionThreadService.create(body);
   res.status(httpStatus.CREATED).send(discussionThread);
 });
 

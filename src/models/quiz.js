@@ -1,8 +1,13 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
-const { toJSON } = require('./plugins');
+const { toJSON, paginate } = require('./plugins');
 
 const quizSchema = Schema(
   {
+    creator: {
+      type: SchemaTypes.ObjectId,
+      required: true,
+      ref: 'User',
+    },
     name: String,
     startTime: Date,
     duration: Number,
@@ -20,41 +25,22 @@ const quizSchema = Schema(
         ref: 'Category',
       },
     ],
-    stages: [
-      {
-        type: SchemaTypes.ObjectId,
-        ref: 'Stage',
-      },
-    ],
-    discussionThreads: [
-      {
-        type: SchemaTypes.ObjectId,
-        ref: 'DiscussionThread',
-      },
-    ],
-    reviews: [
-      {
-        type: SchemaTypes.ObjectId,
-        ref: 'Reviews',
-      },
-    ],
     hasAutoEvaluation: {
       type: Boolean,
       default: false,
     },
+    averageRating: Number,
+    participantCount: Number,
     description: String,
     coverImage: String,
     totalMarks: Number,
-    leaderboard: {
-      type: SchemaTypes.ObjectId,
-      ref: 'Leaderboard',
-    },
   },
   { timestamps: true }
 );
 
 quizSchema.plugin(toJSON);
+quizSchema.plugin(paginate);
 
-const Quiz = model('Quiz', quizSchema);
+const Quiz = model('quiz', quizSchema);
 
 module.exports = Quiz;

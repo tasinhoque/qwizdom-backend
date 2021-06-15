@@ -15,6 +15,6 @@ const categorySchema = Schema(
 
 categorySchema.plugin(toJSON);
 
-const Category = model('Category', categorySchema);
+const Category = model('category', categorySchema);
 
 module.exports = Category;

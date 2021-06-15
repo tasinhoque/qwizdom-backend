@@ -1,8 +1,12 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, SchemaTypes } = require('mongoose');
 const { toJSON } = require('./plugins');
 
 const questionSchema = Schema(
   {
+    stage: {
+      type: SchemaTypes.ObjectId,
+      ref: 'Stage',
+    },
     serial: Number,
     totalMarks: Number,
     difficulty: Number,

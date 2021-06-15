@@ -87,7 +87,7 @@
 
 ## Discussion Thread Routes
 
-- GET /discussion-threads/:discussionThreadId
+- [x] GET /discussion-threads/:discussionThreadId
 - DELETE /discussion-threads/:discussionThreadId
 - PATCH /discussion-threads/:discussionThreadId
 

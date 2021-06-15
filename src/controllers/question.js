@@ -1,10 +1,14 @@
 const httpStatus = require('http-status');
 const { catchAsync } = require('../utils');
-const { questionService, stageService } = require('../services');
+const { questionService } = require('../services');
 
 const create = catchAsync(async (req, res) => {
-  const question = await questionService.create(req.body);
-  await stageService.update(req.params.stageId, { $push: { questions: question.id } });
+  const body = {
+    ...req.body,
+    stage: req.params.stageId,
+  };
+
+  const question = await questionService.create(body);
   res.status(httpStatus.CREATED).send(question);
 });
 

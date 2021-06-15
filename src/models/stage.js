@@ -3,22 +3,20 @@ const { toJSON } = require('./plugins');
 
 const stageSchema = Schema(
   {
+    quiz: {
+      type: SchemaTypes.ObjectId,
+      ref: 'quiz',
+    },
     parent: {
       type: SchemaTypes.ObjectId,
-      ref: 'Stage',
+      ref: 'stage',
     },
-    questions: [
-      {
-        type: SchemaTypes.ObjectId,
-        ref: 'Question',
-      },
-    ],
   },
   { timestamps: true }
 );
 
 stageSchema.plugin(toJSON);
 
-const Stage = model('Stage', stageSchema);
+const Stage = model('stage', stageSchema);
 
 module.exports = Stage;

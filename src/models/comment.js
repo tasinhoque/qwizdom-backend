@@ -8,6 +8,10 @@ const commentSchema = Schema(
       required: true,
       ref: 'User',
     },
+    discussionThread: {
+      type: SchemaTypes.ObjectId,
+      ref: 'discussion-thread',
+    },
     text: String,
   },
   { timestamps: true }
@@ -15,6 +19,6 @@ const commentSchema = Schema(
 
 commentSchema.plugin(toJSON);
 
-const Comment = model('Comment', commentSchema);
+const Comment = model('comment', commentSchema);
 
 module.exports = Comment;

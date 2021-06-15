@@ -3,12 +3,17 @@ const { toJSON } = require('./plugins');
 
 const quizResponseSchema = Schema(
   {
+    responder: {
+      type: SchemaTypes.ObjectId,
+      required: true,
+      ref: 'user',
+    },
     quiz: {
       type: SchemaTypes.ObjectId,
       required: true,
-      ref: 'Quiz',
+      ref: 'quiz',
     },
-    stages: [
+    stageResponses: [
       {
         stage: {
           type: SchemaTypes.ObjectId,
@@ -17,7 +22,7 @@ const quizResponseSchema = Schema(
         responses: [
           {
             type: SchemaTypes.ObjectId,
-            ref: 'QuestionResponse',
+            ref: 'question-response',
           },
         ],
       },
@@ -28,6 +33,6 @@ const quizResponseSchema = Schema(
 
 quizResponseSchema.plugin(toJSON);
 
-const QuizResponse = model('QuizResponse', quizResponseSchema);
+const QuizResponse = model('quiz-response', quizResponseSchema);
 
 module.exports = QuizResponse;

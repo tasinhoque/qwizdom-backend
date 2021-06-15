@@ -3,11 +3,15 @@ const { toJSON } = require('./plugins');
 
 const leaderboardSchema = Schema(
   {
+    quiz: {
+      type: SchemaTypes.ObjectId,
+      ref: 'quiz',
+    },
     participants: [
       {
         user: {
           type: SchemaTypes.ObjectId,
-          ref: 'User',
+          ref: 'user',
         },
         rank: Number,
         marks: Number,
@@ -19,6 +23,6 @@ const leaderboardSchema = Schema(
 
 leaderboardSchema.plugin(toJSON);
 
-const Leaderboard = model('Leaderboard', leaderboardSchema);
+const Leaderboard = model('leaderboard', leaderboardSchema);
 
 module.exports = Leaderboard;

@@ -6,12 +6,12 @@ const questionResponseSchema = Schema(
     user: {
       type: SchemaTypes.ObjectId,
       required: true,
-      ref: 'User',
+      ref: 'user',
     },
     question: {
       type: SchemaTypes.ObjectId,
       required: true,
-      ref: 'Question',
+      ref: 'question',
     },
     text: String,
     options: [Number],
@@ -23,6 +23,6 @@ const questionResponseSchema = Schema(
 
 questionResponseSchema.plugin(toJSON);
 
-const QuestionerResponse = model('QuestionerResponse', questionResponseSchema);
+const QuestionResponse = model('question-response', questionResponseSchema);
 
-module.exports = QuestionerResponse;
+module.exports = QuestionResponse;

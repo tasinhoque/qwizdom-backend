@@ -2,7 +2,6 @@ const { SchemaTypes, Schema, model } = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
-const { roles } = require('../config/roles');
 
 const userSchema = Schema(
   {
@@ -11,6 +10,7 @@ const userSchema = Schema(
       required: true,
       trim: true,
     },
+    avatar: String,
     email: {
       type: String,
       required: true,
@@ -37,31 +37,14 @@ const userSchema = Schema(
       // used by the toJSON plugin
       private: true,
     },
-    role: {
-      type: String,
-      enum: roles,
-      default: 'user',
-    },
     isEmailVerified: {
       type: Boolean,
       default: false,
     },
-    quizResponses: [
-      {
-        type: SchemaTypes.ObjectId,
-        ref: 'QuizResponse',
-      },
-    ],
     subscribedQuizzes: [
       {
         type: SchemaTypes.ObjectId,
-        ref: 'Quiz',
-      },
-    ],
-    createdQuizzes: [
-      {
-        type: SchemaTypes.ObjectId,
-        ref: 'Quiz',
+        ref: 'quiz',
       },
     ],
   },
@@ -104,6 +87,6 @@ userSchema.pre('save', async function (next) {
 /**
  * @typedef User
  */
-const User = model('User', userSchema);
+const User = model('user', userSchema);
 
 module.exports = User;

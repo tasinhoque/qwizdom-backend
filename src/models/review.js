@@ -3,10 +3,14 @@ const { toJSON } = require('./plugins');
 
 const reviewSchema = Schema(
   {
+    quiz: {
+      type: SchemaTypes.ObjectId,
+      ref: 'quiz',
+    },
     user: {
       type: SchemaTypes.ObjectId,
       required: true,
-      ref: 'User',
+      ref: 'user',
     },
     rating: Number,
     text: String,
@@ -16,6 +20,6 @@ const reviewSchema = Schema(
 
 reviewSchema.plugin(toJSON);
 
-const Review = model('Review', reviewSchema);
+const Review = model('review', reviewSchema);
 
 module.exports = Review;

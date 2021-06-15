@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const { quizController } = require('../../../controllers');
+const { auth } = require('../../../middlewares');
 const discussionThreadRouter = require('./discussionThread');
 const leaderboardRouter = require('./leaderboard');
 const reviewRouter = require('./review');
@@ -12,6 +13,6 @@ router.use('/:quizId/leaderboard', leaderboardRouter);
 router.use('/:quizId/stages', stageRouter);
 router.use('/:quizId/reviews', reviewRouter);
 
-router.route('/').post(quizController.create);
+router.route('/').get(auth(), quizController.get).post(auth('general'), quizController.create);
 
 module.exports = router;

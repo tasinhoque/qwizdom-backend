@@ -11,6 +11,6 @@ const notificationSchema = Schema(
 
 notificationSchema.plugin(toJSON);
 
-const Notification = model('Notification', notificationSchema);
+const Notification = model('notification', notificationSchema);
 
 module.exports = Notification;

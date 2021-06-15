@@ -2,6 +2,7 @@ import { Types } from 'mongoose';
 
 export interface User {
   name: string;
+  avatar: string;
   email: string;
   isEmailVerified: string;
   quizResponses: Types.ObjectId[];
@@ -18,18 +19,20 @@ export interface QuizResponse {
 }
 
 export interface Quiz {
-  name: string;
-  startTime: Date;
-  duration: number;
+  name: string; // needed
+  startTime: Date; // needed
+  duration: number; // needed
   isPublished: boolean;
-  isTest: boolean;
+  isTest: boolean; // needed
   categories: Types.ObjectId[];
   stages: Types.ObjectId[];
   discussionThreads: Types.ObjectId[];
   hasAutoEvaluation: boolean;
   description: string;
-  coverImage: string;
+  coverImage: string; // needed
   totalMarks: number;
+  // createdAt
+  // creator - name, image
 }
 
 export interface Notification {
