@@ -1,8 +1,9 @@
 const { Router } = require('express');
 const { reviewController } = require('../../../controllers');
+const { auth } = require('../../../middlewares');
 
 const router = Router({ mergeParams: true });
 
-router.post('/', reviewController.create);
+router.post('/', auth, reviewController.create);
 
 module.exports = router;

@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const { quizResponseController } = require('../../../controllers');
+const { stageController } = require('../../../controllers');
 const { auth } = require('../../../middlewares');
 
 const router = Router({ mergeParams: true });
 
-router.post('/', auth, quizResponseController.create);
+router.post('/', auth, stageController.create);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const { Router } = require('express');
-const { auth, validate } = require('../../../middlewares');
-const { userValidation } = require('../../../validations');
-const { userController } = require('../../../controllers');
+const { auth, validate } = require('../../middlewares');
+const { userValidation } = require('../../validations');
+const { userController } = require('../../controllers');
 
 const router = Router();
 
@@ -16,7 +16,7 @@ router
   .patch(auth, validate(userValidation.updateUser), userController.updateUser)
   .delete(auth, validate(userValidation.deleteUser), userController.deleteUser);
 
-router.get('/:userId/quiz-responses', userController.getQuizResponses);
+router.get('/:userId/quiz-responses', auth, userController.getQuizResponses);
 
 module.exports = router;
 
