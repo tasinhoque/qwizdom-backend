@@ -6,7 +6,7 @@ const commentSchema = Schema(
     user: {
       type: SchemaTypes.ObjectId,
       required: true,
-      ref: 'User',
+      ref: 'user',
     },
     discussionThread: {
       type: SchemaTypes.ObjectId,

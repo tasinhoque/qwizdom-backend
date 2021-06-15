@@ -457,7 +457,7 @@ describe('Auth middleware', () => {
     const req = httpMocks.createRequest({ headers: { Authorization: `Bearer ${userOneAccessToken}` } });
     const next = jest.fn();
 
-    await auth()(req, httpMocks.createResponse(), next);
+    await auth(req, httpMocks.createResponse(), next);
 
     expect(next).toHaveBeenCalledWith();
     expect(req.user._id).toEqual(userOne._id);
@@ -468,7 +468,7 @@ describe('Auth middleware', () => {
     const req = httpMocks.createRequest();
     const next = jest.fn();
 
-    await auth()(req, httpMocks.createResponse(), next);
+    await auth(req, httpMocks.createResponse(), next);
 
     expect(next).toHaveBeenCalledWith(expect.any(ApiError));
     expect(next).toHaveBeenCalledWith(
@@ -481,7 +481,7 @@ describe('Auth middleware', () => {
     const req = httpMocks.createRequest({ headers: { Authorization: 'Bearer randomToken' } });
     const next = jest.fn();
 
-    await auth()(req, httpMocks.createResponse(), next);
+    await auth(req, httpMocks.createResponse(), next);
 
     expect(next).toHaveBeenCalledWith(expect.any(ApiError));
     expect(next).toHaveBeenCalledWith(
@@ -496,7 +496,7 @@ describe('Auth middleware', () => {
     const req = httpMocks.createRequest({ headers: { Authorization: `Bearer ${refreshToken}` } });
     const next = jest.fn();
 
-    await auth()(req, httpMocks.createResponse(), next);
+    await auth(req, httpMocks.createResponse(), next);
 
     expect(next).toHaveBeenCalledWith(expect.any(ApiError));
     expect(next).toHaveBeenCalledWith(
@@ -511,7 +511,7 @@ describe('Auth middleware', () => {
     const req = httpMocks.createRequest({ headers: { Authorization: `Bearer ${accessToken}` } });
     const next = jest.fn();
 
-    await auth()(req, httpMocks.createResponse(), next);
+    await auth(req, httpMocks.createResponse(), next);
 
     expect(next).toHaveBeenCalledWith(expect.any(ApiError));
     expect(next).toHaveBeenCalledWith(
@@ -526,7 +526,7 @@ describe('Auth middleware', () => {
     const req = httpMocks.createRequest({ headers: { Authorization: `Bearer ${accessToken}` } });
     const next = jest.fn();
 
-    await auth()(req, httpMocks.createResponse(), next);
+    await auth(req, httpMocks.createResponse(), next);
 
     expect(next).toHaveBeenCalledWith(expect.any(ApiError));
     expect(next).toHaveBeenCalledWith(
@@ -538,7 +538,7 @@ describe('Auth middleware', () => {
     const req = httpMocks.createRequest({ headers: { Authorization: `Bearer ${userOneAccessToken}` } });
     const next = jest.fn();
 
-    await auth()(req, httpMocks.createResponse(), next);
+    await auth(req, httpMocks.createResponse(), next);
 
     expect(next).toHaveBeenCalledWith(expect.any(ApiError));
     expect(next).toHaveBeenCalledWith(

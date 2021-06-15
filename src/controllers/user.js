@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { pick, ApiError, catchAsync } = require('../utils');
-const { userService } = require('../services');
+const { userService, quizResponseService, quizService } = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -33,7 +33,7 @@ const deleteUser = catchAsync(async (req, res) => {
 });
 
 const flipSubscription = catchAsync(async (req, res) => {
-  const user = await userService.getUserById(req.params.userId);
+  const user = await userService.getUserById(req.user.id);
 
   let update = {};
   const innerContent = { subscribedQuizzes: req.params.quizId };
@@ -44,31 +44,31 @@ const flipSubscription = catchAsync(async (req, res) => {
     update = { $push: innerContent };
   }
 
-  await userService.update(req.params.userId, update);
+  await userService.update(req.user.id, update);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
 const getSubscribedQuizzes = catchAsync(async (req, res) => {
-  const user = await userService.getUserById(req.params.userId, 'subscribedQuizzes');
+  const user = await userService.getUserById(req.user.id, 'subscribedQuizzes');
   res.status(httpStatus.OK).send(user.subscribedQuizzes);
 });
 
 const getQuizResponses = catchAsync(async (req, res) => {
-  const user = await userService.getUserById(req.params.userId, 'quizResponses');
-  res.status(httpStatus.OK).send(user.quizResponses);
+  const quizResponses = await quizResponseService.getByUser(req.user.id);
+  res.status(httpStatus.OK).send(quizResponses);
 });
 
 const getCreatedQuizzes = catchAsync(async (req, res) => {
-  const user = await userService.getUserById(req.params.userId, 'createdQuizzes');
-  let result = [];
+  const quizzes = await quizService.getByUser(req.user.id);
+  let results = [];
 
   if (req.originalUrl.endsWith('draft')) {
-    result = user.createdQuizzes.filter((quiz) => quiz.isPublished === false);
+    results = quizzes.filter((quiz) => quiz.isPublished === false);
   } else {
-    result = user.createdQuizzes.filter((quiz) => quiz.isPublished === true);
+    results = quizzes.filter((quiz) => quiz.isPublished === true);
   }
 
-  res.status(httpStatus.OK).send(result);
+  res.status(httpStatus.OK).send(results);
 });
 
 module.exports = {

@@ -1,8 +1,10 @@
 const { Router } = require('express');
-const { discussionThreadController } = require('../../../controllers');
+const { auth } = require('../../../middlewares');
+const { discussionThreadController, commentController } = require('../../../controllers');
 
 const router = Router({ mergeParams: true });
 
-router.get('/', discussionThreadController.getAllComments);
+router.get('/', auth, discussionThreadController.getAllComments);
+router.post('/', auth, commentController.create);
 
 module.exports = router;

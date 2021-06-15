@@ -2,28 +2,19 @@ const { Router } = require('express');
 const { auth, validate } = require('../../../middlewares');
 const { userValidation } = require('../../../validations');
 const { userController } = require('../../../controllers');
-const notificationRouter = require('./notification');
-const questionResponseRouter = require('./questionResponse');
-const commentRouter = require('./comment');
-const quizRouter = require('./quiz');
 
 const router = Router();
 
-router.use('/:userId/notifications', notificationRouter);
-router.use('/:userId/questions/:questionId/responses', questionResponseRouter);
-router.use('/:userId/quizzes', quizRouter);
-router.use('/:userId/discussion-threads/:discussionThreadId/comments', commentRouter);
-
 router
   .route('/')
-  .post(auth(), validate(userValidation.createUser), userController.createUser)
-  .get(auth(), validate(userValidation.getUsers), userController.getUsers);
+  .post(auth, validate(userValidation.createUser), userController.createUser)
+  .get(auth, validate(userValidation.getUsers), userController.getUsers);
 
 router
   .route('/:userId')
-  .get(auth(), validate(userValidation.getUser), userController.getUser)
-  .patch(auth(), validate(userValidation.updateUser), userController.updateUser)
-  .delete(auth(), validate(userValidation.deleteUser), userController.deleteUser);
+  .get(auth, validate(userValidation.getUser), userController.getUser)
+  .patch(auth, validate(userValidation.updateUser), userController.updateUser)
+  .delete(auth, validate(userValidation.deleteUser), userController.deleteUser);
 
 router.get('/:userId/quiz-responses', userController.getQuizResponses);
 

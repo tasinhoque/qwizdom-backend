@@ -6,7 +6,7 @@ const create = catchAsync(async (req, res) => {
   const body = {
     ...req.body,
     question: req.params.questionId,
-    user: req.params.userId,
+    responder: req.user.id,
   };
 
   const question = await questionResponseService.create(body);

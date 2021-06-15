@@ -11,7 +11,6 @@ const questionResponseRouter = require('./questionResponse');
 const quizResponseRouter = require('./quizResponse');
 const reviewRouter = require('./review');
 const stageRouter = require('./stage');
-const notificationRouter = require('./user/notification');
 const { config } = require('../../config');
 
 const router = Router();
@@ -27,7 +26,6 @@ router.use('/question-responses', questionResponseRouter);
 router.use('/quiz-responses', quizResponseRouter);
 router.use('/reviews', reviewRouter);
 router.use('/stages', stageRouter);
-router.use('/notifications', notificationRouter);
 
 /* istanbul ignore next */
 if (config.env === 'development') {

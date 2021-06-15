@@ -3,7 +3,7 @@ const { toJSON } = require('./plugins');
 
 const questionResponseSchema = Schema(
   {
-    user: {
+    responder: {
       type: SchemaTypes.ObjectId,
       required: true,
       ref: 'user',

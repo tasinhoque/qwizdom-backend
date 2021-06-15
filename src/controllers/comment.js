@@ -5,7 +5,7 @@ const { commentService } = require('../services');
 const create = catchAsync(async (req, res) => {
   const body = {
     ...req.body,
-    user: req.params.userId,
+    user: req.user.id,
     discussionThread: req.params.discussionThreadId,
   };
 

@@ -1,11 +1,10 @@
 const httpStatus = require('http-status');
 const { catchAsync } = require('../utils');
-const { quizResponseService, userService } = require('../services');
+const { quizResponseService } = require('../services');
 
 const create = catchAsync(async (req, res) => {
-  const body = { ...req.body, quiz: req.params.quizId };
+  const body = { ...req.body, quiz: req.params.quizId, responder: req.user.id };
   const quizResponse = await quizResponseService.create(body);
-  await userService.update(req.params.userId, { $push: { quizResponses: quizResponse.id } });
   res.status(httpStatus.CREATED).send(quizResponse);
 });
 
