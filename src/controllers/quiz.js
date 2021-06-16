@@ -18,12 +18,17 @@ const update = catchAsync(async (req, res) => {
 });
 
 const get = catchAsync(async (req, res) => {
-  const { page, limit, isTest, isTimeBound, isScheduled } = req.query;
+  const { page, limit, isTest, isTimeBound, isScheduled, name } = req.query;
   const filter = {
     isTest,
     duration: { $exists: isTimeBound },
     startTime: { $exists: isScheduled },
+    name: { $regex: name, $options: 'ix' },
   };
+
+  if (name === undefined) {
+    delete filter.name;
+  }
 
   if (isTest === undefined) {
     delete filter.isTest;
