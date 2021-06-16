@@ -17,6 +17,8 @@ router.use('/:quizId/reviews', reviewRouter);
 
 router.route('/').get(auth, quizController.get).post(auth, quizController.create);
 
+router.route('/:quizId').get(auth, quizController.getById);
+
 router.get('/subscribed', auth, userController.getSubscribedQuizzes);
 router.get('/published', auth, quizController.getByCreator);
 router.get('/draft', auth, quizController.getByCreator);

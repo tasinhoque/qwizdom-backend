@@ -41,6 +41,11 @@ const get = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(quizzes);
 });
 
+const getById = catchAsync(async (req, res) => {
+  const quiz = await quizService.getById(req.params.quizId);
+  res.status(httpStatus.OK).send(quiz);
+});
+
 const getByCreator = catchAsync(async (req, res) => {
   const filter = {};
 
@@ -59,4 +64,5 @@ module.exports = {
   update,
   get,
   getByCreator,
+  getById,
 };
