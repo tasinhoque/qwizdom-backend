@@ -64,10 +64,16 @@ const getByCreator = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(quizzes);
 });
 
+const updateCover = catchAsync(async (req, res) => {
+  const quiz = await quizService.update(req.params.quizId, { coverImage: res.locals.publicUrl });
+  res.status(httpStatus.OK).send(quiz);
+});
+
 module.exports = {
   create,
   update,
   get,
   getByCreator,
   getById,
+  updateCover,
 };
