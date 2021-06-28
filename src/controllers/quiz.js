@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const { catchAsync } = require('../utils');
-const { quizService } = require('../services');
+const { quizService, stageService, questionService } = require('../services');
+// const { logger } = require('../config');
 
 const create = catchAsync(async (req, res) => {
   const body = {
@@ -74,6 +75,38 @@ const updateCover = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(quiz);
 });
 
+const createComplete = catchAsync(async (req, res) => {
+  const { quizId, stages } = req.body;
+
+  let localStages = [];
+
+  for (let i = 0; i < stages.length; i += 1) {
+    const { questions } = stages[i];
+    const parent = i > 0 ? localStages[i - 1].stageId : undefined;
+
+    const stage = await stageService.create({
+      quiz: quizId,
+      parent,
+    });
+
+    let localQuestions = [];
+
+    for (let j = 0; j < questions.length; j += 1) {
+      const { questionId, ...questionArg } = questions[j];
+      const question = await questionService.create({ stage: stage.id, ...questionArg });
+      localQuestions = [...localQuestions, question];
+    }
+
+    localStages = [...localStages, { stageId: stage.id, questions: localQuestions }];
+  }
+
+  if (localStages.length > 0) {
+    await quizService.update(quizId, { firstStage: localStages[0].stageId });
+  }
+
+  res.status(httpStatus.OK).send({ quizId, stages: localStages });
+});
+
 module.exports = {
   create,
   update,
@@ -81,4 +114,5 @@ module.exports = {
   getByCreator,
   getById,
   updateCover,
+  createComplete,
 };

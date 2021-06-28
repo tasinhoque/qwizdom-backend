@@ -18,6 +18,8 @@ router.use('/:quizId/reviews', reviewRouter);
 
 router.route('/').get(auth, quizController.get).post(auth, quizController.create);
 
+router.post('/complete', auth, quizController.createComplete);
+
 router.route('/:quizId').get(auth, quizController.getById);
 
 router.get('/subscribed', auth, userController.getSubscribedQuizzes);

@@ -12,7 +12,27 @@
 - GET /quizzes
 - GET /quizzes/search (query: q)
 - [x] POST /quizzes
-- [x] POST /quizzes/complete
+
+- POST /quizzes/complete
+
+Request Body:
+
+```json
+{
+  "quizId": "60c8b649b1163904e4f9d6da",
+  "stages": [
+    [
+      {
+        "questionType": "mcq"
+      },
+      {
+        "type": "checkbox"
+      }
+    ]
+  ]
+}
+```
+
 - PATCH /quizzes/:quizId
 - DELETE /quizzes/:quizId
 - POST /quizzes/:quizId/publish
@@ -57,6 +77,7 @@
 
 - GET /questions/:questionId
 - PATCH /questions/:questionId
+- POST /questions/:questionId/image
 - DELETE /questions/:questionId
 
 ### Question Response Routes
