@@ -12,6 +12,12 @@ const create = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(question);
 });
 
+const uploadImage = catchAsync(async (req, res) => {
+  const question = await questionService.update(req.params.questionId, { image: res.locals.publicUrl });
+  res.status(httpStatus.OK).send(question);
+});
+
 module.exports = {
   create,
+  uploadImage,
 };
