@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { quizResponseController } = require('../../../controllers');
-const { auth } = require('../../../middlewares');
+const { quizResponseController } = require('../../controllers');
+const { auth } = require('../../middlewares');
 
 const router = Router({ mergeParams: true });
 

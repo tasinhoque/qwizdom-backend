@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const commentRouter = require('./comment');
-const { auth } = require('../../../middlewares');
-const { discussionThreadController } = require('../../../controllers');
+const { auth } = require('../../middlewares');
+const { discussionThreadController } = require('../../controllers');
 
 const router = Router();
 

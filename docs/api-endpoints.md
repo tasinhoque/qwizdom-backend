@@ -12,6 +12,7 @@
 - GET /quizzes
 - GET /quizzes/search (query: q)
 - [x] POST /quizzes
+- [x] POST /quizzes/complete
 - PATCH /quizzes/:quizId
 - DELETE /quizzes/:quizId
 - POST /quizzes/:quizId/publish

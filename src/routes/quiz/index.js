@@ -1,7 +1,7 @@
 const { Router } = require('express');
-const { quizController, userController } = require('../../../controllers');
-const { auth, uploadFile } = require('../../../middlewares');
-const { multer } = require('../../../config');
+const { quizController, userController } = require('../../controllers');
+const { auth, uploadFile } = require('../../middlewares');
+const { multer } = require('../../config');
 const discussionThreadRouter = require('./discussionThread');
 const leaderboardRouter = require('./leaderboard');
 const reviewRouter = require('./review');

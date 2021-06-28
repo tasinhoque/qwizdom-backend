@@ -8,7 +8,7 @@ const passport = require('passport');
 const httpStatus = require('http-status');
 const { config, morgan, jwtStrategy } = require('./config');
 const { authLimiter, errorConverter, errorHandler } = require('./middlewares');
-const routes = require('./routes/v1');
+const routes = require('./routes');
 const { ApiError } = require('./utils');
 
 const app = express();
@@ -48,7 +48,7 @@ if (config.env === 'production') {
 }
 
 // v1 api routes
-app.use('/v1', routes);
+app.use('/', routes);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {

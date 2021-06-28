@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { reviewController } = require('../../../controllers');
-const { auth } = require('../../../middlewares');
+const { reviewController } = require('../../controllers');
+const { auth } = require('../../middlewares');
 
 const router = Router({ mergeParams: true });
 
