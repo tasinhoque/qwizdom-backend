@@ -19,7 +19,17 @@ const getUser = catchAsync(async (req, res) => {
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
-  res.send(user);
+  res.status(httpStatus).send(user);
+});
+
+const updateLoggedInUser = catchAsync(async (req, res) => {
+  const user = await userService.updateUserById(req.user.id, req.body);
+  res.status(httpStatus.OK).send(user);
+});
+
+const updateAvatar = catchAsync(async (req, res) => {
+  const user = await userService.update(req.user.id, { avatar: res.locals.publicUrl });
+  res.status(httpStatus.OK).send(user);
 });
 
 const updateUser = catchAsync(async (req, res) => {
@@ -76,4 +86,6 @@ module.exports = {
   deleteUser,
   flipSubscription,
   getSubscribedQuizzes,
+  updateLoggedInUser,
+  updateAvatar,
 };

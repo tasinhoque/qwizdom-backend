@@ -64,7 +64,7 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
-const update = async (id, updateBody) => User.findByIdAndUpdate(id, updateBody).orFail();
+const update = async (id, updateBody) => User.findByIdAndUpdate(id, updateBody, { new: true }).orFail();
 
 /**
  * Delete user by id
