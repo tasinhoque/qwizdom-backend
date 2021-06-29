@@ -16,16 +16,31 @@ router.use('/:quizId/leaderboard', leaderboardRouter);
 router.use('/:quizId/stages', stageRouter);
 router.use('/:quizId/reviews', reviewRouter);
 
-router.route('/').get(auth, quizController.get).post(auth, quizController.create);
+router
+  .route('/')
+  .get(auth, quizController.get)
+  .post(auth, quizController.create);
 
 router.post('/complete', auth, quizController.createComplete);
-
-router.route('/:quizId').get(auth, quizController.getById);
-
 router.get('/subscribed', auth, userController.getSubscribedQuizzes);
 router.get('/published', auth, quizController.getByCreator);
 router.get('/draft', auth, quizController.getByCreator);
-router.post('/:quizId/subscription/flip', auth, userController.flipSubscription);
-router.post('/:quizId/cover', auth, multer.single('cover'), uploadFile, quizController.updateCover);
+
+router.route('/:quizId').get(auth, quizController.getById);
+
+router.get('/:quizId/complete', auth, quizController.getByIdComplete);
+
+router.post(
+  '/:quizId/subscription/flip',
+  auth,
+  userController.flipSubscription
+);
+router.post(
+  '/:quizId/cover',
+  auth,
+  multer.single('cover'),
+  uploadFile,
+  quizController.updateCover
+);
 
 module.exports = router;

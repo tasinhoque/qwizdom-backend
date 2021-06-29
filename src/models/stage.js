@@ -7,10 +7,7 @@ const stageSchema = Schema(
       type: SchemaTypes.ObjectId,
       ref: 'quiz',
     },
-    parent: {
-      type: SchemaTypes.ObjectId,
-      ref: 'stage',
-    },
+    serial: Number,
   },
   { timestamps: true }
 );

@@ -24,7 +24,14 @@ const questionSchema = Schema(
     canUploadFile: Boolean,
     type: {
       type: String,
-      enum: ['mcq', 'checkbox', 'fileUpload', 'text', 'fillInTheGaps', 'trueOrFalse'],
+      enum: [
+        'mcq',
+        'checkbox',
+        'fileUpload',
+        'text',
+        'fillInTheGaps',
+        'trueOrFalse',
+      ],
     },
   },
   { timestamps: true }

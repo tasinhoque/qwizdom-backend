@@ -19,7 +19,15 @@ const update = catchAsync(async (req, res) => {
 });
 
 const get = catchAsync(async (req, res) => {
-  const { page, limit, isTest, isTimeBound, isScheduled, name, categories } = req.query;
+  const {
+    page,
+    limit,
+    isTest,
+    isTimeBound,
+    isScheduled,
+    name,
+    categories,
+  } = req.query;
   const filter = {
     isTest,
     duration: { $exists: isTimeBound },
@@ -48,12 +56,31 @@ const get = catchAsync(async (req, res) => {
     delete filter.categories;
   }
 
-  const quizzes = await quizService.get(filter, { page, limit, populate: 'creator' });
+  const quizzes = await quizService.get(filter, {
+    page,
+    limit,
+    populate: 'creator',
+  });
   res.status(httpStatus.OK).send(quizzes);
 });
 
 const getById = catchAsync(async (req, res) => {
   const quiz = await quizService.getById(req.params.quizId);
+  res.status(httpStatus.OK).send(quiz);
+});
+
+const getByIdComplete = catchAsync(async (req, res) => {
+  const { quizId } = req.params;
+  let quiz = await quizService.getById(quizId);
+  quiz = { ...quiz._doc, stages: [] };
+
+  const stages = await stageService.getByQuiz(quizId);
+
+  for (const stage of stages) {
+    const questions = await questionService.getByStage(stage._id);
+    quiz.stages = [...quiz.stages, { stage, questions }];
+  }
+
   res.status(httpStatus.OK).send(quiz);
 });
 
@@ -71,37 +98,45 @@ const getByCreator = catchAsync(async (req, res) => {
 });
 
 const updateCover = catchAsync(async (req, res) => {
-  const quiz = await quizService.update(req.params.quizId, { coverImage: res.locals.publicUrl });
+  const quiz = await quizService.update(req.params.quizId, {
+    coverImage: res.locals.publicUrl,
+  });
   res.status(httpStatus.OK).send(quiz);
 });
 
 const createComplete = catchAsync(async (req, res) => {
-  const { quizId, stages } = req.body;
+  const { quizId, isPublished, stages } = req.body;
+
+  await quizService.update(quizId, { isPublished });
+
+  const existingStages = await stageService.getByQuiz(quizId);
+
+  for (const stage of existingStages) {
+    await questionService.deleteByStage(stage.id);
+  }
+
+  await stageService.deleteByQuiz(quizId);
 
   let localStages = [];
 
-  for (let i = 0; i < stages.length; i += 1) {
-    const { questions } = stages[i];
-    const parent = i > 0 ? localStages[i - 1].stageId : undefined;
-
+  for (const { questions, stageId } of stages) {
     const stage = await stageService.create({
       quiz: quizId,
-      parent,
+      serial: stageId,
     });
 
     let localQuestions = [];
 
-    for (let j = 0; j < questions.length; j += 1) {
-      const { questionId, ...questionArg } = questions[j];
-      const question = await questionService.create({ stage: stage.id, ...questionArg });
+    for (const { questionId, ...questionFields } of questions) {
+      const question = await questionService.create({
+        stage: stage.id,
+        ...questionFields,
+        serial: questionId,
+      });
       localQuestions = [...localQuestions, question];
     }
 
-    localStages = [...localStages, { stageId: stage.id, questions: localQuestions }];
-  }
-
-  if (localStages.length > 0) {
-    await quizService.update(quizId, { firstStage: localStages[0].stageId });
+    localStages = [...localStages, { stage, questions: localQuestions }];
   }
 
   res.status(httpStatus.OK).send({ quizId, stages: localStages });
@@ -115,4 +150,5 @@ module.exports = {
   getById,
   updateCover,
   createComplete,
+  getByIdComplete,
 };

@@ -34,10 +34,6 @@ const quizSchema = Schema(
     description: String,
     coverImage: String,
     totalMarks: Number,
-    firstStage: {
-      type: SchemaTypes.ObjectId,
-      ref: 'stage',
-    },
   },
   { timestamps: true }
 );
