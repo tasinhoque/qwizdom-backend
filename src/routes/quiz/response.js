@@ -6,5 +6,6 @@ const router = Router({ mergeParams: true });
 
 router.post('/', auth, quizResponseController.create);
 router.post('/complete', auth, quizResponseController.createComplete);
+router.get('/complete', auth, quizResponseController.getByQuizAndUser);
 
 module.exports = router;

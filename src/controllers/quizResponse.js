@@ -45,8 +45,38 @@ const createComplete = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(quizResponse);
 });
 
+const getByQuizAndUser = catchAsync(async (req, res) => {
+  const quizResponses = await quizResponseService.getByQuizAndUser(
+    req.params.quizId,
+    req.user.id
+  );
+
+  if (quizResponses.length === 0) {
+    res.status(httpStatus.OK).send([]);
+  } else {
+    let lastResponse = quizResponses[0];
+    // res.status(httpStatus.OK).send(lastResponse);
+
+    // for (let k = 0; k < lastResponse.stageResponses.length; k++) {
+    //   for (let i = 0; i < lastResponse.stageResponses[k].options.length; i++) {
+    //     for (
+    //       let j = 0;
+    //       j < lastResponse.stageResponses[k].options.length;
+    //       j++
+    //     ) {
+    //       lastResponse.stageResponses[k].question.options[j].userResponse =
+    //         lastResponse.stageResponses[k].options[i];
+    //     }
+    //   }
+    // }
+
+    res.status(httpStatus.OK).send(lastResponse);
+  }
+});
+
 module.exports = {
   create,
   getByUser,
   createComplete,
+  getByQuizAndUser,
 };

@@ -14,7 +14,7 @@ const questionResponseSchema = Schema(
       ref: 'question',
     },
     text: String,
-    options: [Number],
+    options: [Boolean],
     file: String,
     marks: Number,
   },
