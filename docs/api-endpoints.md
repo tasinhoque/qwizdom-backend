@@ -133,3 +133,21 @@ Request Body:
 ## Notification Routes
 
 - GET /notifications
+
+# JSON
+
+```json
+{
+  "stageResponses": [
+    {
+      "stage": "60db05cfc67d1f67c4d19dbe",
+      "responses": [
+        {
+          "questionId": "60db05d0c67d1f67c4d19dc0",
+          "options": [1]
+        }
+      ]
+    }
+  ]
+}
+```
