@@ -105,9 +105,13 @@ const updateCover = catchAsync(async (req, res) => {
 });
 
 const createComplete = catchAsync(async (req, res) => {
-  const { quizId, isPublished, stages } = req.body;
+  const { isPublished, stages } = req.body;
+  const { quizId } = req.params;
 
-  await quizService.update(quizId, { isPublished });
+  await quizService.update(
+    quizId,
+    isPublished !== undefined ? { isPublished } : {}
+  );
 
   const existingStages = await stageService.getByQuiz(quizId);
 

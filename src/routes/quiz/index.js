@@ -21,7 +21,7 @@ router
   .get(auth, quizController.get)
   .post(auth, quizController.create);
 
-router.post('/complete', auth, quizController.createComplete);
+router.post('/:quizId/complete', auth, quizController.createComplete);
 router.get('/subscribed', auth, userController.getSubscribedQuizzes);
 router.get('/published', auth, quizController.getByCreator);
 router.get('/draft', auth, quizController.getByCreator);
