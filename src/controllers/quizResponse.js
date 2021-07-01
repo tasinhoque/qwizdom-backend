@@ -54,7 +54,7 @@ const getByQuizAndUser = catchAsync(async (req, res) => {
   if (quizResponses.length === 0) {
     res.status(httpStatus.OK).send([]);
   } else {
-    res.status(httpStatus.OK).send(quizResponse[0]);
+    res.status(httpStatus.OK).send(quizResponses[0]);
   }
 });
 
