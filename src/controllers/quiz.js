@@ -72,7 +72,7 @@ const getById = catchAsync(async (req, res) => {
 const getByIdComplete = catchAsync(async (req, res) => {
   const { quizId } = req.params;
   let quiz = await quizService.getById(quizId);
-  quiz = { ...quiz._doc, stages: [] };
+  quiz = { ...quiz.toJSON(), stages: [] };
 
   const stages = await stageService.getByQuiz(quizId);
 
