@@ -26,12 +26,12 @@ const createComplete = catchAsync(async (req, res) => {
 
     for (const response of stageResponse.responses) {
       const { questionId: question, ...rest } = response;
-      const questionDoc = await questionService.getById(questionId);
+      const questionDoc = await questionService.getById(question);
       let points = 0;
 
       if (questionDoc.type === 'trueOrFalse') {
         let totalCorrectAnswers = 0;
-        for (const i = 0; i < questionDoc.options.length; i++) {
+        for (let i = 0; i < questionDoc.options.length; i++) {
           if (questionDoc.options[i].isAnswer === rest.options[i]) {
             totalCorrectAnswers++;
           }
@@ -46,7 +46,7 @@ const createComplete = catchAsync(async (req, res) => {
       ) {
         let isCorrect = true;
 
-        for (const i = 0; i < questionDoc.options.length; i++) {
+        for (let i = 0; i < questionDoc.options.length; i++) {
           if (questionDoc.options[i].isAnswer !== rest.options[i]) {
             isCorrect = false;
             break;
@@ -65,7 +65,7 @@ const createComplete = catchAsync(async (req, res) => {
         ...rest,
       });
 
-      totalPoints += point;
+      totalPoints += points;
       localResponses.push(questionResponse.id);
     }
 
