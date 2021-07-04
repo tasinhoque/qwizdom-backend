@@ -47,7 +47,7 @@ const createComplete = catchAsync(async (req, res) => {
         let isCorrect = true;
 
         for (const i = 0; i < questionDoc.options.length; i++) {
-          if (questionDoc.options[i] !== rest.options[i]) {
+          if (questionDoc.options[i].isAnswer !== rest.options[i]) {
             isCorrect = false;
             break;
           }
