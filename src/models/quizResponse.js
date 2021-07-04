@@ -13,6 +13,7 @@ const quizResponseSchema = Schema(
       required: true,
       ref: 'quiz',
     },
+    totalPoints: Number,
     stageResponses: [
       {
         stage: {

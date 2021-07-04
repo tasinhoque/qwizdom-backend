@@ -1,6 +1,10 @@
 const httpStatus = require('http-status');
 const { catchAsync } = require('../utils');
-const { quizResponseService, questionResponseService } = require('../services');
+const {
+  quizResponseService,
+  questionResponseService,
+  questionService,
+} = require('../services');
 
 const getByUser = catchAsync(async (req, res) => {
   const quizResponses = await quizResponseService.getByUser(req.user.id);
@@ -15,18 +19,53 @@ const create = catchAsync(async (req, res) => {
 
 const createComplete = catchAsync(async (req, res) => {
   let localStageResponses = [];
+  let totalPoints = 0;
 
   for (const stageResponse of req.body.stageResponses) {
     let localResponses = [];
 
     for (const response of stageResponse.responses) {
       const { questionId: question, ...rest } = response;
+      const questionDoc = await questionService.getById(questionId);
+      let points = 0;
+
+      if (questionDoc.type === 'trueOrFalse') {
+        let totalCorrectAnswers = 0;
+        for (const i = 0; i < questionDoc.options.length; i++) {
+          if (questionDoc.options[i] === rest.options[i]) {
+            totalCorrectAnswers++;
+          }
+        }
+
+        points =
+          (totalCorrectAnswers * questionDoc.points) /
+          questionDoc.options.length;
+      } else if (
+        questionDoc.type === 'mcq' ||
+        questionDoc.type === 'checkbox'
+      ) {
+        let isCorrect = true;
+
+        for (const i = 0; i < questionDoc.options.length; i++) {
+          if (questionDoc.options[i] !== rest.options[i]) {
+            isCorrect = false;
+            break;
+          }
+        }
+
+        if (isCorrect) {
+          points = questionDoc.points;
+        }
+      }
+
       const questionResponse = await questionResponseService.create({
         question,
         responder: req.user.id,
+        points,
         ...rest,
       });
 
+      totalPoints += point;
       localResponses.push(questionResponse.id);
     }
 
@@ -40,6 +79,7 @@ const createComplete = catchAsync(async (req, res) => {
     stageResponses: localStageResponses,
     quiz: req.params.quizId,
     responder: req.user.id,
+    totalPoints,
   };
   const quizResponse = await quizResponseService.create(body);
   res.status(httpStatus.CREATED).send(quizResponse);

@@ -33,7 +33,7 @@ const quizSchema = Schema(
     participantCount: Number,
     description: String,
     coverImage: String,
-    totalMarks: Number,
+    totalPoints: Number,
   },
   { timestamps: true }
 );

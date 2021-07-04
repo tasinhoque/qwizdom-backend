@@ -8,7 +8,7 @@ const questionSchema = Schema(
       ref: 'stage',
     },
     serial: Number,
-    totalMarks: Number,
+    points: Number,
     difficulty: Number,
     title: String,
     image: String,

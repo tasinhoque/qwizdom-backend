@@ -16,7 +16,7 @@ const questionResponseSchema = Schema(
     text: String,
     options: [Boolean],
     file: String,
-    marks: Number,
+    points: Number,
   },
   { timestamps: true }
 );

@@ -10,9 +10,12 @@ const getByStage = async stageId =>
 
 const deleteByStage = async stageId => Question.deleteMany({ stage: stageId });
 
+const getById = async id => Question.findById(id);
+
 module.exports = {
   create,
   update,
   getByStage,
   deleteByStage,
+  getById,
 };
