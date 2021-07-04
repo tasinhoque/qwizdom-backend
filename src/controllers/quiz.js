@@ -59,7 +59,7 @@ const get = catchAsync(async (req, res) => {
   const quizzes = await quizService.get(filter, {
     page,
     limit,
-    populate: 'creator',
+    populate: 'creator categories',
   });
   res.status(httpStatus.OK).send(quizzes);
 });
