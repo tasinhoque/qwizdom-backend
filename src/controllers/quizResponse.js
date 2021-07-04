@@ -32,7 +32,7 @@ const createComplete = catchAsync(async (req, res) => {
       if (questionDoc.type === 'trueOrFalse') {
         let totalCorrectAnswers = 0;
         for (const i = 0; i < questionDoc.options.length; i++) {
-          if (questionDoc.options[i] === rest.options[i]) {
+          if (questionDoc.options[i].isAnswer === rest.options[i]) {
             totalCorrectAnswers++;
           }
         }
