@@ -1,7 +1,11 @@
 const httpStatus = require('http-status');
 const { catchAsync } = require('../utils');
-const { quizService, stageService, questionService } = require('../services');
-// const { logger } = require('../config');
+const {
+  quizService,
+  stageService,
+  questionService,
+  userService,
+} = require('../services');
 
 const create = catchAsync(async (req, res) => {
   const body = {
@@ -107,6 +111,7 @@ const updateCover = catchAsync(async (req, res) => {
 const createComplete = catchAsync(async (req, res) => {
   const { isPublished, stages } = req.body;
   const { quizId } = req.params;
+  let totalPoints = 0;
 
   await quizService.update(
     quizId,
@@ -138,13 +143,19 @@ const createComplete = catchAsync(async (req, res) => {
         serial: questionId,
       });
       localQuestions = [...localQuestions, question];
+      totalPoints += questionFields.points;
     }
 
     localStages = [...localStages, { stage, questions: localQuestions }];
   }
 
-  res.status(httpStatus.OK).send({ quizId, stages: localStages });
+  res.status(httpStatus.OK).send({ quizId, stages: localStages, totalPoints });
 });
+
+const getSubscriberCount = async (req, res) =>
+  res.status(200).send({
+    count: await userService.getSubscriberCount(req.params.quizId),
+  });
 
 module.exports = {
   create,
@@ -155,4 +166,5 @@ module.exports = {
   updateCover,
   createComplete,
   getByIdComplete,
+  getSubscriberCount,
 };

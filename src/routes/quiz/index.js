@@ -26,6 +26,12 @@ router.get('/subscribed', auth, userController.getSubscribedQuizzes);
 router.get('/published', auth, quizController.getByCreator);
 router.get('/draft', auth, quizController.getByCreator);
 
+router.get(
+  '/:quizId/count-subscriber',
+  auth,
+  quizController.getSubscriberCount
+);
+
 router.route('/:quizId').get(auth, quizController.getById);
 
 router.get('/:quizId/complete', auth, quizController.getByIdComplete);
