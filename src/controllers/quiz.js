@@ -149,6 +149,8 @@ const createComplete = catchAsync(async (req, res) => {
     localStages = [...localStages, { stage, questions: localQuestions }];
   }
 
+  await quizService.update(quizId, { totalPoints });
+
   res.status(httpStatus.OK).send({ quizId, stages: localStages, totalPoints });
 });
 
