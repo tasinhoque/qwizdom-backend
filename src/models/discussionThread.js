@@ -1,5 +1,5 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
-const { toJSON } = require('./plugins');
+const { toJSON, paginate } = require('./plugins');
 
 const discussionThreadSchema = Schema(
   {
@@ -13,11 +13,13 @@ const discussionThreadSchema = Schema(
       ref: 'quiz',
     },
     text: String,
+    image: String,
   },
   { timestamps: true }
 );
 
 discussionThreadSchema.plugin(toJSON);
+discussionThreadSchema.plugin(paginate);
 
 const DiscussionThread = model('discussion-thread', discussionThreadSchema);
 

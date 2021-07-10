@@ -13,8 +13,10 @@ const leaderboardSchema = Schema(
           type: SchemaTypes.ObjectId,
           ref: 'user',
         },
-        rank: Number,
-        marks: Number,
+        response: {
+          type: SchemaTypes.ObjectId,
+          ref: 'quiz-response',
+        },
       },
     ],
   },

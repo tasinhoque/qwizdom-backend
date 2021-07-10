@@ -13,6 +13,14 @@ const create = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(comment);
 });
 
+const getByDiscussionThread = catchAsync(async (req, res) => {
+  const comments = await commentService.getByDiscussionThread(
+    req.params.discussionThreadId
+  );
+  res.status(httpStatus.OK).send(comments);
+});
+
 module.exports = {
   create,
+  getByDiscussionThread,
 };

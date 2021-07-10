@@ -8,9 +8,9 @@
 - [x] GET /quizzes/published
 - [x] GET /quizzes/:quizId
 - [x] GET /quizzes/:quizId/average-rating
-- GET /quizzes/:quizId/participants/count
-- GET /quizzes
-- GET /quizzes/search (query: q)
+- [x] GET /quizzes/:quizId/participants/count
+- [x] GET /quizzes
+- [x] GET /quizzes/search (query: q)
 - [x] POST /quizzes
 
 - POST /quizzes/complete
@@ -56,7 +56,7 @@ Request Body:
 
 ### Discussion Thread Routes
 
-- GET /quizzes/:quizId/discussion-threads
+- [x] GET /quizzes/:quizId/discussion-threads
 - [x] POST /quizzes/:quizId/discussion-threads
 
 ### Quiz Response Routes
@@ -93,7 +93,7 @@ Request Body:
 
 ### Comment Routes
 
-- [ ] GET /discussion-threads/:discussionThreadId/comments
+- [x] GET /discussion-threads/:discussionThreadId/comments
 - [x] POST /discussion-threads/:discussionThreadId/comments
 
 ## Comment Routes
