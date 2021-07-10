@@ -6,8 +6,8 @@
 - [x] GET /quizzes/subscribed
 - [x] GET /quizzes/draft
 - [x] GET /quizzes/published
-- GET /quizzes/:quizId
-- GET /quizzes/:quizId/average-rating
+- [x] GET /quizzes/:quizId
+- [x] GET /quizzes/:quizId/average-rating
 - GET /quizzes/:quizId/participants/count
 - GET /quizzes
 - GET /quizzes/search (query: q)
