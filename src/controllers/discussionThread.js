@@ -33,7 +33,6 @@ const getByQuiz = catchAsync(async (req, res) => {
 
 module.exports = {
   create,
-  getAllComments,
   get,
   getByQuiz,
 };
