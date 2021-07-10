@@ -4,6 +4,7 @@ const {
   quizResponseService,
   questionResponseService,
   questionService,
+  quizService,
 } = require('../services');
 
 const getByUser = catchAsync(async (req, res) => {
@@ -82,6 +83,13 @@ const createComplete = catchAsync(async (req, res) => {
     totalPoints,
   };
   const quizResponse = await quizResponseService.create(body);
+
+  const [element, ..._rest] = await quizResponseService.getParticipantCount(
+    req.params.quizId
+  );
+
+  await quizService.update(req.params.quizId, element);
+
   res.status(httpStatus.CREATED).send(quizResponse);
 });
 

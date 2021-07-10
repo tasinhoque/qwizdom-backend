@@ -10,6 +10,7 @@ const quizSchema = Schema(
     },
     name: String,
     startTime: Date,
+    endTime: Date,
     duration: Number,
     isPublished: {
       type: Boolean,
@@ -30,7 +31,8 @@ const quizSchema = Schema(
       default: false,
     },
     averageRating: Number,
-    participantCount: Number,
+    totalParticipants: Number,
+    totalSubscribers: Number,
     description: String,
     coverImage: String,
     totalPoints: Number,

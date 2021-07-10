@@ -3,19 +3,24 @@ const { catchAsync } = require('../utils');
 const { reviewService, quizService } = require('../services');
 
 const create = catchAsync(async (req, res) => {
-  const data = { user: req.user.id, ...req.body };
+  const data = { user: req.user.id, quiz: req.params.quizId, ...req.body };
   const review = await reviewService.create(data);
+  const [element, ..._rest] = await reviewService.getAverageRating(
+    req.params.quizId
+  );
 
   await quizService.update(req.params.quizId, {
-    $push: { reviews: review.id },
+    averageRating: element.averageRating,
   });
-
   res.status(httpStatus.CREATED).send(review);
 });
 
 const getAverageRating = catchAsync(async (req, res) => {
-  const response = await reviewService.getAverageRating(req.params.quizId);
-  res.status(httpStatus.OK).send({ averageRating: response[0].averageRating });
+  const [element, ..._rest] = await reviewService.getAverageRating(
+    req.params.quizId
+  );
+
+  res.status(httpStatus.OK).send({ averageRating: element.averageRating });
 });
 
 module.exports = {

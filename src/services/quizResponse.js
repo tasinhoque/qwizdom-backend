@@ -1,3 +1,4 @@
+const { Types } = require('mongoose');
 const { QuizResponse } = require('../models');
 
 const create = async body => QuizResponse.create(body);
@@ -16,9 +17,27 @@ const getByQuizAndUser = async (quizId, userId) =>
     })
     .sort('-createdAt');
 
+const getParticipantCount = async quizId =>
+  QuizResponse.aggregate([
+    {
+      $match: {
+        $expr: { $eq: ['$quiz', Types.ObjectId(quizId)] },
+      },
+    },
+    {
+      $group: {
+        _id: '$responder',
+      },
+    },
+    {
+      $count: 'totalParticipants',
+    },
+  ]);
+
 module.exports = {
   create,
   update,
   getByUser,
   getByQuizAndUser,
+  getParticipantCount,
 };

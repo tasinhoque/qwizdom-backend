@@ -5,6 +5,7 @@ const {
   stageService,
   questionService,
   userService,
+  quizResponseService,
 } = require('../services');
 
 const create = catchAsync(async (req, res) => {
@@ -154,10 +155,20 @@ const createComplete = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send({ quizId, stages: localStages, totalPoints });
 });
 
-const getSubscriberCount = async (req, res) =>
+const getSubscriberCount = async (req, res) => {
+  const count = await userService.getSubscriberCount(req.params.quizId);
+  res.status(200).send({ count });
+};
+
+const getParticipantCount = async (req, res) => {
+  const response = await quizResponseService.getParticipantCount(
+    req.params.quizId
+  );
+
   res.status(200).send({
-    count: await userService.getSubscriberCount(req.params.quizId),
+    count: response[0].totalParticipants,
   });
+};
 
 module.exports = {
   create,
@@ -169,4 +180,5 @@ module.exports = {
   createComplete,
   getByIdComplete,
   getSubscriberCount,
+  getParticipantCount,
 };

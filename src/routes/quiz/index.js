@@ -42,6 +42,12 @@ router.get(
   quizController.getSubscriberCount
 );
 
+router.get(
+  '/:quizId/participant/count',
+  auth,
+  quizController.getParticipantCount
+);
+
 router.post(
   '/:quizId/cover',
   auth,

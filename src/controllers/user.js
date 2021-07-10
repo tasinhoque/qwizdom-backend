@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { pick, ApiError, catchAsync } = require('../utils');
-const { userService } = require('../services');
+const { userService, quizService } = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -28,7 +28,9 @@ const updateLoggedInUser = catchAsync(async (req, res) => {
 });
 
 const updateAvatar = catchAsync(async (req, res) => {
-  const user = await userService.update(req.user.id, { avatar: res.locals.publicUrl });
+  const user = await userService.update(req.user.id, {
+    avatar: res.locals.publicUrl,
+  });
   res.status(httpStatus.OK).send(user);
 });
 
@@ -46,15 +48,22 @@ const flipSubscription = catchAsync(async (req, res) => {
   const user = await userService.getUserById(req.user.id);
 
   let update = {};
+  let increment = 0;
   const innerContent = { subscribedQuizzes: req.params.quizId };
 
   if (user.subscribedQuizzes.includes(req.params.quizId)) {
     update = { $pull: innerContent };
+    increment = -1;
   } else {
     update = { $push: innerContent };
+    increment = 1;
   }
 
   await userService.update(req.user.id, update);
+  await quizService.update(req.params.quizId, {
+    $inc: { totalSubscribers: increment },
+  });
+
   res.status(httpStatus.NO_CONTENT).send();
 });
 
