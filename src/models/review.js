@@ -1,5 +1,5 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
-const { toJSON } = require('./plugins');
+const { toJSON, paginate } = require('./plugins');
 
 const reviewSchema = Schema(
   {
@@ -19,6 +19,7 @@ const reviewSchema = Schema(
 );
 
 reviewSchema.plugin(toJSON);
+reviewSchema.plugin(paginate);
 
 const Review = model('review', reviewSchema);
 

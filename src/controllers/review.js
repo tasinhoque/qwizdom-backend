@@ -23,7 +23,18 @@ const getAverageRating = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send({ averageRating: element.averageRating });
 });
 
+const getByQuiz = catchAsync(async (req, res) => {
+  const { page, limit } = req.query;
+  const response = await reviewService.getByQuiz(
+    req.params.quizId,
+    page,
+    limit
+  );
+  res.status(httpStatus.OK).send(response);
+});
+
 module.exports = {
   create,
   getAverageRating,
+  getByQuiz,
 };
