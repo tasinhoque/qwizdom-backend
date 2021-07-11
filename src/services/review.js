@@ -4,7 +4,7 @@ const { Types } = require('mongoose');
 const create = async body => Review.create(body);
 
 const getByQuiz = async (quizId, page, limit) =>
-  Review.paginate({ quiz: quizId }, { page, limit });
+  Review.paginate({ quiz: quizId }, { page, limit, populate: 'user' });
 
 const update = async (id, updateBody) => {
   const review = await Review.findByIdAndUpdate(id, updateBody, {
