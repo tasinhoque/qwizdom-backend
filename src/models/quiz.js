@@ -10,8 +10,11 @@ const quizSchema = Schema(
     },
     name: String,
     startTime: Date,
-    endTime: Date,
     duration: Number,
+    isScheduled: {
+      type: Boolean,
+      default: false,
+    },
     isPublished: {
       type: Boolean,
       default: false,
