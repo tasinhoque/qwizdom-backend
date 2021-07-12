@@ -1,5 +1,5 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
-const { toJSON } = require('./plugins');
+const { toJSON, paginate } = require('./plugins');
 
 const quizResponseSchema = Schema(
   {
@@ -33,6 +33,7 @@ const quizResponseSchema = Schema(
 );
 
 quizResponseSchema.plugin(toJSON);
+quizResponseSchema.plugin(paginate);
 
 const QuizResponse = model('quiz-response', quizResponseSchema);
 

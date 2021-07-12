@@ -106,9 +106,25 @@ const getByQuizAndUser = catchAsync(async (req, res) => {
   }
 });
 
+const getByQuiz = catchAsync(async (req, res) => {
+  let response = await quizResponseService.getCreatedAts(req.params.quizId);
+  const createdAts = response.map(({ createdAt }) => createdAt);
+
+  const { page, limit } = req.query;
+
+  response = await quizResponseService.getByQuiz(
+    req.params.quizId,
+    createdAts,
+    page,
+    limit
+  );
+  res.status(200).send(response);
+});
+
 module.exports = {
   create,
   getByUser,
   createComplete,
   getByQuizAndUser,
+  getByQuiz,
 };
