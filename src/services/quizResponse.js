@@ -34,18 +34,15 @@ const getParticipantCount = async quizId =>
     },
   ]);
 
-const getCreatedAts3 = async quizId =>
+const getByQuizForLeaderboard = async (quizId, createdAts) =>
   QuizResponse.find({
     quiz: quizId,
     createdAt: {
-      $in: [
-        new Date('2021-07-12T09:54:04.810Z'),
-        new Date('2021-07-11T16:17:32.540Z'),
-      ],
+      $in: createdAts,
     },
   })
     .populate({
-      path: 'stageResponses quiz',
+      path: 'stageResponses quiz responder',
       populate: { path: 'responses categories creator', populate: 'question' },
     })
     .sort('-createdAt');
@@ -57,7 +54,7 @@ const getByQuiz = async (quizId, createdAts, page, limit) =>
       createdAt: { $in: createdAts },
     },
     {
-      populate: 'stageResponses.responses.question,quiz.categories',
+      populate: 'stageResponses.responses.question,quiz.categories,responder',
       sortBy: 'createdAt:desc',
       page,
       limit,
@@ -87,5 +84,5 @@ module.exports = {
   getParticipantCount,
   getCreatedAts,
   getByQuiz,
-  getCreatedAts3,
+  getByQuizForLeaderboard,
 };
