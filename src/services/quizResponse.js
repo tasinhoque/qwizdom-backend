@@ -12,7 +12,7 @@ const getByUser = async userId =>
 const getByQuizAndUser = async (quizId, userId) =>
   QuizResponse.find({ responder: userId, quiz: quizId })
     .populate({
-      path: 'stageResponses quiz',
+      path: 'stageResponses quiz responder',
       populate: { path: 'responses categories creator', populate: 'question' },
     })
     .sort('-createdAt');
