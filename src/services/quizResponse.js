@@ -55,6 +55,12 @@ const getByQuiz = async (filter, page, limit) =>
     limit,
   });
 
+const getById = async id =>
+  QuizResponse.findById(id).populate({
+    path: 'stageResponses',
+    populate: { path: 'responses' },
+  });
+
 const getCreatedAts = async quizId =>
   QuizResponse.aggregate([
     {
@@ -79,4 +85,5 @@ module.exports = {
   getCreatedAts,
   getByQuiz,
   getByQuizForLeaderboard,
+  getById,
 };
