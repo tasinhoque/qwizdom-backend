@@ -1,185 +1,85 @@
 {
-  "results": [
+  "stageResponses": [
     {
-      "stageResponses": [
+      "responses": [
         {
-          "responses": [
-            {
-              "options": [true, false, false, false],
-              "question": {
-                "stage": "60e9ec0cd481931636a41c47",
-                "title": "who's here?",
-                "points": 10,
-                "options": [
-                  {
-                    "_id": "60e9ec0cd481931636a41c4a",
-                    "text": "jgj",
-                    "isAnswer": false
-                  },
-                  {
-                    "_id": "60e9ec0cd481931636a41c4b",
-                    "text": "sdf",
-                    "isAnswer": false
-                  },
-                  {
-                    "_id": "60e9ec0cd481931636a41c4c",
-                    "text": "black widow",
-                    "isAnswer": false
-                  },
-                  {
-                    "_id": "60e9ec0cd481931636a41c4d",
-                    "text": "hawkeye",
-                    "isAnswer": true
-                  }
-                ],
-                "type": "mcq",
-                "image": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625943023/x5sr55iouqq55in7ukg0.jpg",
-                "serial": 0,
-                "createdAt": "2021-07-10T18:50:52.976Z",
-                "id": "60e9ec0cd481931636a41c49"
+          "options": [true, false, false, false],
+          "question": {
+            "stage": "60e9ec0cd481931636a41c47",
+            "title": "who's here?",
+            "points": 10,
+            "options": [
+              {
+                "_id": "60e9ec0cd481931636a41c4a",
+                "text": "jgj",
+                "isAnswer": false
               },
-              "responder": "60dd6422ada11c17979ff766",
-              "points": 0,
-              "createdAt": "2021-07-12T13:34:42.491Z",
-              "id": "60ec44f253a06837038813c0"
-            }
-          ],
-          "_id": "60ec44f253a06837038813c3",
-          "stage": "60e9ec0cd481931636a41c47"
+              {
+                "_id": "60e9ec0cd481931636a41c4b",
+                "text": "sdf",
+                "isAnswer": false
+              },
+              {
+                "_id": "60e9ec0cd481931636a41c4c",
+                "text": "black widow",
+                "isAnswer": false
+              },
+              {
+                "_id": "60e9ec0cd481931636a41c4d",
+                "text": "hawkeye",
+                "isAnswer": true
+              }
+            ],
+            "type": "mcq",
+            "image": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625943023/x5sr55iouqq55in7ukg0.jpg",
+            "serial": 0,
+            "createdAt": "2021-07-10T18:50:52.976Z",
+            "id": "60e9ec0cd481931636a41c49"
+          },
+          "responder": "60dd6422ada11c17979ff766",
+          "points": 0,
+          "createdAt": "2021-07-12T13:34:42.491Z",
+          "id": "60ec44f253a06837038813c0"
         }
       ],
-      "quiz": {
-        "isScheduled": false,
-        "isPublished": false,
-        "isTest": true,
-        "categories": [
-          {
-            "name": "Web Development",
-            "createdAt": "2021-06-22T11:44:55.004Z",
-            "id": "60d1cd36bb5d6069d8149f42"
-          }
-        ],
-        "hasAutoEvaluation": true,
-        "name": "test1",
-        "description": "for frontend purpose",
-        "duration": 10,
-        "creator": "60c8e0316c538f428f3d245f",
-        "createdAt": "2021-07-10T14:04:39.708Z",
-        "coverImage": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625925895/qpzwyjqe34pwrzerk2i3.bmp",
-        "totalPoints": 10,
-        "totalParticipants": 2,
-        "averageRating": 3,
-        "totalSubscribers": -1,
-        "id": "60e9a8f77eccf615e19b60f4"
-      },
-      "responder": {
-        "isEmailVerified": false,
-        "subscribedQuizzes": ["60ddba3bada11c17979ff8ab"],
-        "name": "hello2",
-        "email": "hello2@gmail.com",
-        "createdAt": "2021-07-01T06:43:46.746Z",
-        "avatar": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1626072716/cq81eahpzxnaluaefnwe.jpg",
-        "id": "60dd6422ada11c17979ff766"
-      },
-      "totalPoints": 0,
-      "createdAt": "2021-07-12T13:34:42.760Z",
-      "id": "60ec44f253a06837038813c2"
-    },
-    {
-      "stageResponses": [
-        {
-          "responses": [
-            {
-              "options": [true, false, false, false],
-              "question": {
-                "stage": "60e9ec0cd481931636a41c47",
-                "title": "who's here?",
-                "points": 10,
-                "options": [
-                  {
-                    "_id": "60e9ec0cd481931636a41c4a",
-                    "text": "jgj",
-                    "isAnswer": false
-                  },
-                  {
-                    "_id": "60e9ec0cd481931636a41c4b",
-                    "text": "sdf",
-                    "isAnswer": false
-                  },
-                  {
-                    "_id": "60e9ec0cd481931636a41c4c",
-                    "text": "black widow",
-                    "isAnswer": false
-                  },
-                  {
-                    "_id": "60e9ec0cd481931636a41c4d",
-                    "text": "hawkeye",
-                    "isAnswer": true
-                  }
-                ],
-                "type": "mcq",
-                "image": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625943023/x5sr55iouqq55in7ukg0.jpg",
-                "serial": 0,
-                "createdAt": "2021-07-10T18:50:52.976Z",
-                "id": "60e9ec0cd481931636a41c49"
-              },
-              "responder": "60db0cd63f73173bbbe67514",
-              "points": 0,
-              "createdAt": "2021-07-11T16:17:32.143Z",
-              "id": "60eb199c28d01aa7de150da4"
-            }
-          ],
-          "_id": "60eb199c28d01aa7de150da7",
-          "stage": "60e9ec0cd481931636a41c47"
-        }
-      ],
-      "quiz": {
-        "isScheduled": false,
-        "isPublished": false,
-        "isTest": true,
-        "categories": [
-          {
-            "name": "Web Development",
-            "createdAt": "2021-06-22T11:44:55.004Z",
-            "id": "60d1cd36bb5d6069d8149f42"
-          }
-        ],
-        "hasAutoEvaluation": true,
-        "name": "test1",
-        "description": "for frontend purpose",
-        "duration": 10,
-        "creator": "60c8e0316c538f428f3d245f",
-        "createdAt": "2021-07-10T14:04:39.708Z",
-        "coverImage": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625925895/qpzwyjqe34pwrzerk2i3.bmp",
-        "totalPoints": 10,
-        "totalParticipants": 2,
-        "averageRating": 3,
-        "totalSubscribers": -1,
-        "id": "60e9a8f77eccf615e19b60f4"
-      },
-      "responder": {
-        "isEmailVerified": false,
-        "subscribedQuizzes": [
-          "60c8b649b1163904e4f9d6da",
-          "60c9a27a20f8ec283a56c7b5",
-          "60c9a28020f8ec283a56c7b7",
-          "60c9a28220f8ec283a56c7b8",
-          "60c9a28320f8ec283a56c7b9",
-          "60c9952220f8ec283a56c7ae"
-        ],
-        "name": "Rem Sharp",
-        "email": "shar@gmail.com",
-        "createdAt": "2021-06-29T12:06:46.850Z",
-        "avatar": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625851548/twzfzi0mmewstkwfgpwm.jpg",
-        "id": "60db0cd63f73173bbbe67514"
-      },
-      "totalPoints": 0,
-      "createdAt": "2021-07-11T16:17:32.540Z",
-      "id": "60eb199c28d01aa7de150da6"
+      "_id": "60ec44f253a06837038813c3",
+      "stage": "60e9ec0cd481931636a41c47"
     }
   ],
-  "page": 1,
-  "limit": 5,
-  "totalPages": 1,
-  "totalResults": 2
+  "quiz": {
+    "isScheduled": false,
+    "isPublished": false,
+    "isTest": true,
+    "categories": [
+      {
+        "name": "Web Development",
+        "createdAt": "2021-06-22T11:44:55.004Z",
+        "id": "60d1cd36bb5d6069d8149f42"
+      }
+    ],
+    "hasAutoEvaluation": true,
+    "name": "test1",
+    "description": "for frontend purpose",
+    "duration": 10,
+    "creator": {
+      "isEmailVerified": false,
+      "subscribedQuizzes": ["60dd60d9a3d0254dbc93b43c"],
+      "name": "adminand",
+      "email": "admin@gmail.com",
+      "createdAt": "2021-06-15T17:15:29.314Z",
+      "avatar": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625476290/hr2bxuzadxw2rssgicrg.jpg",
+      "id": "60c8e0316c538f428f3d245f"
+    },
+    "createdAt": "2021-07-10T14:04:39.708Z",
+    "coverImage": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625925895/qpzwyjqe34pwrzerk2i3.bmp",
+    "totalPoints": 10,
+    "totalParticipants": 2,
+    "averageRating": 3,
+    "totalSubscribers": -1,
+    "id": "60e9a8f77eccf615e19b60f4"
+  },
+  "responder": "60dd6422ada11c17979ff766",
+  "totalPoints": 0,
+  "createdAt": "2021-07-12T13:34:42.760Z",
+  "id": "60ec44f253a06837038813c2"
 }

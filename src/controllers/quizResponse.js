@@ -76,6 +76,7 @@ const createComplete = catchAsync(async (req, res) => {
     });
   }
 
+  totalPoints = parseFloat(totalPoints.toFixed(2));
   const body = {
     stageResponses: localStageResponses,
     quiz: req.params.quizId,
@@ -111,6 +112,7 @@ const evaluate = catchAsync(async (req, res) => {
     }
   }
 
+  totalPoints = parseFloat(totalPoints.toFixed(2));
   quizResponse = await quizResponseService.update(quizResponseId, {
     totalPoints,
     isEvaluated: true,
