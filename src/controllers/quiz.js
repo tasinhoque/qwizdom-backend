@@ -136,15 +136,17 @@ const createComplete = catchAsync(async (req, res) => {
     });
 
     let localQuestions = [];
+    let i = 0;
 
     for (const { questionId, ...questionFields } of questions) {
       const question = await questionService.create({
         stage: stage.id,
         ...questionFields,
-        serial: questionId,
+        serial: i,
       });
       localQuestions = [...localQuestions, question];
       totalPoints += questionFields.points;
+      i++;
     }
 
     localStages = [...localStages, { stage, questions: localQuestions }];
