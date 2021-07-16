@@ -106,6 +106,19 @@ const getByQuizAndUser = catchAsync(async (req, res) => {
   }
 });
 
+const getByQuizAndUserOther = catchAsync(async (req, res) => {
+  const quizResponses = await quizResponseService.getByQuizAndUser(
+    req.params.quizId,
+    req.params.userId
+  );
+
+  if (quizResponses.length === 0) {
+    res.status(httpStatus.OK).send([]);
+  } else {
+    res.status(httpStatus.OK).send(quizResponses[0]);
+  }
+});
+
 const getByQuiz = catchAsync(async (req, res) => {
   let response = await quizResponseService.getCreatedAts(req.params.quizId);
   const createdAts = response.map(({ createdAt }) => createdAt);
@@ -127,4 +140,5 @@ module.exports = {
   createComplete,
   getByQuizAndUser,
   getByQuiz,
+  getByQuizAndUserOther,
 };
