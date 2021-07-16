@@ -58,7 +58,7 @@ const getByQuiz = async (filter, page, limit) =>
 const getById = async id =>
   QuizResponse.findById(id).populate({
     path: 'stageResponses',
-    populate: { path: 'responses' },
+    populate: 'responses',
   });
 
 const getCreatedAts = async quizId =>

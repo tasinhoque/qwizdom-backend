@@ -94,16 +94,16 @@ const createComplete = catchAsync(async (req, res) => {
 });
 
 const evaluate = catchAsync(async (req, res) => {
-  const { responses, quizResponseId } = req.body;
+  const { quizResponseId } = req.params;
 
-  for (const response of responses) {
-    await questionResponseService.update(response.questionResponseId, {
+  for (const { points, questionResponseId } of req.body) {
+    await questionResponseService.update(questionResponseId, {
       points,
     });
   }
 
-  let quizResponse = await quizResponseService.getById(responses);
-  const totalPoints = 0;
+  let quizResponse = await quizResponseService.getById(quizResponseId);
+  let totalPoints = 0;
 
   for (const stageResponse of quizResponse.stageResponses) {
     for (const response of stageResponse.responses) {
@@ -111,8 +111,14 @@ const evaluate = catchAsync(async (req, res) => {
     }
   }
 
-  quizResponse = await quizResponse.update(quizResponseId, { totalPoints });
-  res.status(httpStatus.OK).send(quizResponse);
+  quizResponse = await quizResponseService.update(quizResponseId, {
+    totalPoints,
+    isEvaluated: true,
+  });
+
+  res
+    .status(httpStatus.OK)
+    .send({ message: 'Total points is now ' + totalPoints });
 });
 
 const getByQuizAndUser = catchAsync(async (req, res) => {

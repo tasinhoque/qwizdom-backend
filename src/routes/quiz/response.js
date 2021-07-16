@@ -13,6 +13,5 @@ router.get(
   auth,
   quizResponseController.getByQuizAndUserOther
 );
-router.patch('/complete/:userId', auth, quizResponseController.evaluate);
 
 module.exports = router;
