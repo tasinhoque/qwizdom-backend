@@ -28,6 +28,10 @@ const quizResponseSchema = Schema(
         ],
       },
     ],
+    isEvaluated: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

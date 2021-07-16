@@ -47,19 +47,13 @@ const getByQuizForLeaderboard = async (quizId, createdAts) =>
     })
     .sort('-createdAt');
 
-const getByQuiz = async (quizId, createdAts, page, limit) =>
-  QuizResponse.paginate(
-    {
-      quiz: quizId,
-      createdAt: { $in: createdAts },
-    },
-    {
-      populate: 'stageResponses.responses.question,quiz.categories,responder',
-      sortBy: 'createdAt:desc',
-      page,
-      limit,
-    }
-  );
+const getByQuiz = async (filter, page, limit) =>
+  QuizResponse.paginate(filter, {
+    populate: 'stageResponses.responses.question,quiz.categories,responder',
+    sortBy: 'createdAt:desc',
+    page,
+    limit,
+  });
 
 const getCreatedAts = async quizId =>
   QuizResponse.aggregate([

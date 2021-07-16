@@ -123,14 +123,21 @@ const getByQuiz = catchAsync(async (req, res) => {
   let response = await quizResponseService.getCreatedAts(req.params.quizId);
   const createdAts = response.map(({ createdAt }) => createdAt);
 
-  const { page, limit } = req.query;
+  const { page, limit, type } = req.query;
+  const filter = {
+    quiz: req.params.quizId,
+    createdAt: { $in: createdAts },
+  };
 
-  response = await quizResponseService.getByQuiz(
-    req.params.quizId,
-    createdAts,
-    page,
-    limit
-  );
+  if (type !== undefined) {
+    if (type === 'evaluated') {
+      filter.isEvaluated = true;
+    } else if (type === 'pending') {
+      filter.isEvaluated = false;
+    }
+  }
+  response = await quizResponseService.getByQuiz(filter, page, limit);
+
   res.status(200).send(response);
 });
 
