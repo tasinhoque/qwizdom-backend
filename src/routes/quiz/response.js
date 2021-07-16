@@ -4,7 +4,7 @@ const { auth } = require('../../middlewares');
 
 const router = Router({ mergeParams: true });
 
-router.get('/all', auth, quizResponseController.getByQuiz);
+router.get('/complete/all', auth, quizResponseController.getByQuiz);
 router.post('/', auth, quizResponseController.create);
 router.post('/complete', auth, quizResponseController.createComplete);
 router.get('/complete', auth, quizResponseController.getByQuizAndUser);
