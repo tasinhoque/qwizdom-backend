@@ -128,12 +128,14 @@ const createComplete = catchAsync(async (req, res) => {
   await stageService.deleteByQuiz(quizId);
 
   let localStages = [];
+  let j = 0;
 
   for (const { questions, stageId } of stages) {
     const stage = await stageService.create({
       quiz: quizId,
-      serial: stageId,
+      serial: j,
     });
+    j++;
 
     let localQuestions = [];
     let i = 0;
