@@ -37,15 +37,10 @@ const getParticipantCount = async quizId =>
 const getByQuizForLeaderboard = async (quizId, createdAts) =>
   QuizResponse.find({
     quiz: quizId,
-    createdAt: {
-      $in: createdAts,
-    },
+    createdAt: { $in: createdAts },
   })
-    .populate({
-      path: 'stageResponses quiz responder',
-      populate: { path: 'responses categories creator', populate: 'question' },
-    })
-    .sort('-createdAt');
+    .populate({ path: 'responder' })
+    .sort('-totalPoints');
 
 const getByQuiz = async (filter, page, limit) =>
   QuizResponse.paginate(filter, {

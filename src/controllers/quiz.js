@@ -129,6 +129,7 @@ const createComplete = catchAsync(async (req, res) => {
 
   let localStages = [];
   let j = 0;
+  let i = 0;
 
   for (const { questions } of stages) {
     const stage = await stageService.create({
@@ -138,7 +139,6 @@ const createComplete = catchAsync(async (req, res) => {
     j++;
 
     let localQuestions = [];
-    let i = 0;
 
     for (const { questionId, ...questionFields } of questions) {
       const question = await questionService.create({
