@@ -224,19 +224,22 @@ const getPieChartData = catchAsync(async (req, res) => {
   }
 
   let pieChartData = [];
-  Object.keys(questionMap).map(key => {
-    const array = Object.entries(questionMap[key]);
-    const objects = [];
+  await Promise.all(
+    Object.keys(questionMap).map(async key => {
+      const question = await questionService.getById(key);
+      const array = Object.entries(questionMap[key]);
+      const objects = [];
 
-    for (const subArray of array) {
-      objects.push({ title: subArray[0], value: subArray[1] });
-    }
+      for (const subArray of array) {
+        objects.push({ title: subArray[0], value: subArray[1] });
+      }
 
-    pieChartData.push({
-      question: key,
-      data: objects,
-    });
-  });
+      pieChartData.push({
+        question,
+        data: objects,
+      });
+    })
+  );
 
   res.status(httpStatus.OK).send(pieChartData);
 });

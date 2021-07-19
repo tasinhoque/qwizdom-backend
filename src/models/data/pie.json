@@ -1,6 +1,26 @@
 [
   {
-    "question": "60f5171eb256f84e3c73b2db",
+    "question": {
+      "stage": "60f5171eb256f84e3c73b2d9",
+      "title": "Test",
+      "points": 10,
+      "options": [
+        {
+          "_id": "60f5171eb256f84e3c73b2dc",
+          "text": "dfs",
+          "isAnswer": true
+        },
+        {
+          "_id": "60f5171eb256f84e3c73b2dd",
+          "text": "df",
+          "isAnswer": false
+        }
+      ],
+      "type": "mcq",
+      "serial": 0,
+      "createdAt": "2021-07-19T06:09:34.747Z",
+      "id": "60f5171eb256f84e3c73b2db"
+    },
     "data": [
       {
         "title": "option1",
