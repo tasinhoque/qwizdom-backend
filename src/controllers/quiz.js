@@ -32,6 +32,7 @@ const get = catchAsync(async (req, res) => {
     isScheduled,
     name,
     categories,
+    isPublished,
   } = req.query;
   const filter = {
     isTest,
@@ -39,7 +40,12 @@ const get = catchAsync(async (req, res) => {
     startTime: { $exists: isScheduled },
     name: { $regex: name, $options: 'i' },
     categories: { $in: categories },
+    isPublished,
   };
+
+  if (isPublished === undefined) {
+    delete filter.isPublished;
+  }
 
   if (name === undefined) {
     delete filter.name;
