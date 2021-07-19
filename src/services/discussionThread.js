@@ -10,7 +10,7 @@ const get = async id => DiscussionThread.findById(id).orFail();
 const getByQuiz = async (quizId, page, limit) =>
   DiscussionThread.paginate(
     { quiz: quizId },
-    { page, limit, populate: 'user' }
+    { page, limit, populate: 'user', sortBy: '-createdAt' }
   );
 
 module.exports = {

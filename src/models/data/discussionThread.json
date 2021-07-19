@@ -1,4 +1,74 @@
 {
-  "user": "60bc73357fbd90320884f1e6",
-  "text": "What is a prototype?"
+  "results": [
+    {
+      "text": "What is a prototype?",
+      "user": {
+        "isEmailVerified": false,
+        "subscribedQuizzes": [
+          "60c8b649b1163904e4f9d6da",
+          "60c9a27a20f8ec283a56c7b5",
+          "60c9a28020f8ec283a56c7b7",
+          "60c9a28220f8ec283a56c7b8",
+          "60c9a28320f8ec283a56c7b9",
+          "60c9952220f8ec283a56c7ae"
+        ],
+        "name": "Rem Sharp",
+        "email": "shar@gmail.com",
+        "createdAt": "2021-06-29T12:06:46.850Z",
+        "avatar": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625851548/twzfzi0mmewstkwfgpwm.jpg",
+        "id": "60db0cd63f73173bbbe67514"
+      },
+      "quiz": "60e9ace6733cce24bc9f94e4",
+      "createdAt": "2021-07-10T14:44:47.462Z",
+      "id": "60e9b278960d120beaaf4da3"
+    },
+    {
+      "text": "What is a prototype?",
+      "user": {
+        "isEmailVerified": false,
+        "subscribedQuizzes": [
+          "60c8b649b1163904e4f9d6da",
+          "60c9a27a20f8ec283a56c7b5",
+          "60c9a28020f8ec283a56c7b7",
+          "60c9a28220f8ec283a56c7b8",
+          "60c9a28320f8ec283a56c7b9",
+          "60c9952220f8ec283a56c7ae"
+        ],
+        "name": "Rem Sharp",
+        "email": "shar@gmail.com",
+        "createdAt": "2021-06-29T12:06:46.850Z",
+        "avatar": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625851548/twzfzi0mmewstkwfgpwm.jpg",
+        "id": "60db0cd63f73173bbbe67514"
+      },
+      "quiz": "60e9ace6733cce24bc9f94e4",
+      "createdAt": "2021-07-10T14:44:47.462Z",
+      "id": "60e9b27d960d120beaaf4da4"
+    },
+    {
+      "text": "What is a prototype?",
+      "user": {
+        "isEmailVerified": false,
+        "subscribedQuizzes": [
+          "60c8b649b1163904e4f9d6da",
+          "60c9a27a20f8ec283a56c7b5",
+          "60c9a28020f8ec283a56c7b7",
+          "60c9a28220f8ec283a56c7b8",
+          "60c9a28320f8ec283a56c7b9",
+          "60c9952220f8ec283a56c7ae"
+        ],
+        "name": "Rem Sharp",
+        "email": "shar@gmail.com",
+        "createdAt": "2021-06-29T12:06:46.850Z",
+        "avatar": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1625851548/twzfzi0mmewstkwfgpwm.jpg",
+        "id": "60db0cd63f73173bbbe67514"
+      },
+      "quiz": "60e9ace6733cce24bc9f94e4",
+      "createdAt": "2021-06-10T14:44:47.462Z",
+      "id": "60e9b25f58bb5d46fc5da059"
+    }
+  ],
+  "page": 1,
+  "limit": 30,
+  "totalPages": 1,
+  "totalResults": 3
 }
