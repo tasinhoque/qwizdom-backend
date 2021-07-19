@@ -83,6 +83,12 @@ const createComplete = catchAsync(async (req, res) => {
     responder: req.user.id,
     totalPoints,
   };
+
+  const quiz = await quizService.getById(req.params.quizId);
+  if (quiz.hasAutoEvaluation) {
+    body.isEvaluated = true;
+  }
+
   const quizResponse = await quizResponseService.create(body);
 
   const [element, ..._rest] = await quizResponseService.getParticipantCount(
