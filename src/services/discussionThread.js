@@ -8,7 +8,10 @@ const update = async (id, updateBody) =>
 const get = async id => DiscussionThread.findById(id).orFail();
 
 const getByQuiz = async (quizId, page, limit) =>
-  DiscussionThread.paginate({ quiz: quizId }, { page, limit });
+  DiscussionThread.paginate(
+    { quiz: quizId },
+    { page, limit, populate: 'user' }
+  );
 
 module.exports = {
   create,
