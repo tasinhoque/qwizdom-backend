@@ -50,6 +50,15 @@ const getByQuizForLeaderboard = async (quizId, createdAts) =>
     .populate({ path: 'responder' })
     .sort('-totalPoints');
 
+const getByQuizForPieChart = async (quizId, createdAts) =>
+  QuizResponse.find({
+    quiz: quizId,
+    createdAt: { $in: createdAts },
+  }).populate({
+    path: 'stageResponses',
+    populate: { path: 'responses', populate: 'question' },
+  });
+
 const getByQuiz = async (filter, page, limit) =>
   QuizResponse.paginate(filter, {
     populate: 'stageResponses.responses.question,quiz.categories,responder',
@@ -90,4 +99,5 @@ module.exports = {
   getByQuizForLeaderboard,
   getById,
   quizzesParticipatedIn,
+  getByQuizForPieChart,
 };

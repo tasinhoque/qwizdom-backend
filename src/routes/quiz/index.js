@@ -34,6 +34,7 @@ router.get(
   auth,
   quizResponseController.quizzesParticipatedIn
 );
+router.get('/:quizId/pie-chart', auth, quizResponseController.getPieChartData);
 
 router
   .route('/:quizId')

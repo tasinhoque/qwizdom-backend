@@ -193,6 +193,54 @@ const getByQuiz = catchAsync(async (req, res) => {
   res.status(200).send(response);
 });
 
+const getPieChartData = catchAsync(async (req, res) => {
+  let response = await quizResponseService.getCreatedAts(req.params.quizId);
+  const createdAts = response.map(({ createdAt }) => createdAt);
+
+  response = await quizResponseService.getByQuizForPieChart(
+    req.params.quizId,
+    createdAts
+  );
+
+  let questionMap = {};
+
+  for (const quizResponse of response) {
+    for (const stageResponse of quizResponse.stageResponses) {
+      for (const questionResponse of stageResponse.responses) {
+        const question = questionResponse.question;
+
+        if (question.type === 'mcq' || question.type === 'checkbox') {
+          if (questionMap[question.id] === undefined) {
+            questionMap[question.id] = {};
+          }
+
+          for (let i = 1; i <= questionResponse.options.length; i++) {
+            questionMap[question.id][`option${i}`] =
+              (questionMap[question.id][`option${i}`] || 0) + 1;
+          }
+        }
+      }
+    }
+  }
+
+  let pieChartData = [];
+  Object.keys(questionMap).map(key => {
+    const array = Object.entries(questionMap[key]);
+    const objects = [];
+
+    for (const subArray of array) {
+      objects.push({ title: subArray[0], value: subArray[1] });
+    }
+
+    pieChartData.push({
+      quiz: key,
+      data: objects,
+    });
+  });
+
+  res.status(httpStatus.OK).send(pieChartData);
+});
+
 module.exports = {
   create,
   getByUser,
@@ -202,4 +250,5 @@ module.exports = {
   getByQuizAndUserOther,
   evaluate,
   quizzesParticipatedIn,
+  getPieChartData,
 };
