@@ -233,7 +233,7 @@ const getPieChartData = catchAsync(async (req, res) => {
     }
 
     pieChartData.push({
-      quiz: key,
+      question: key,
       data: objects,
     });
   });
