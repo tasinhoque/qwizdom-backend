@@ -1,5 +1,9 @@
 const { Router } = require('express');
-const { quizController, userController } = require('../../controllers');
+const {
+  quizController,
+  userController,
+  quizResponseController,
+} = require('../../controllers');
 const { auth, uploadFile } = require('../../middlewares');
 const { multer } = require('../../config');
 const discussionThreadRouter = require('./discussionThread');
@@ -25,6 +29,11 @@ router.post('/:quizId/complete', auth, quizController.createComplete);
 router.get('/subscribed', auth, userController.getSubscribedQuizzes);
 router.get('/published', auth, quizController.getByCreator);
 router.get('/draft', auth, quizController.getByCreator);
+router.get(
+  '/participated-in',
+  auth,
+  quizResponseController.quizzesParticipatedIn
+);
 
 router
   .route('/:quizId')

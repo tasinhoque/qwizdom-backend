@@ -9,6 +9,20 @@ const update = async (id, updateBody) =>
 const getByUser = async userId =>
   QuizResponse.find({ responder: userId }).populate('quiz');
 
+const quizzesParticipatedIn = async userId =>
+  QuizResponse.aggregate([
+    {
+      $match: {
+        responder: userId,
+      },
+    },
+    {
+      $group: {
+        _id: '$quiz',
+      },
+    },
+  ]);
+
 const getByQuizAndUser = async (quizId, userId) =>
   QuizResponse.find({ responder: userId, quiz: quizId })
     .populate({
@@ -81,4 +95,5 @@ module.exports = {
   getByQuiz,
   getByQuizForLeaderboard,
   getById,
+  quizzesParticipatedIn,
 };

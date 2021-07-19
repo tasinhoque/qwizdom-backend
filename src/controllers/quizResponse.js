@@ -155,6 +155,17 @@ const getByQuizAndUserOther = catchAsync(async (req, res) => {
   }
 });
 
+const quizzesParticipatedIn = catchAsync(async (req, res) => {
+  const quizzes = await quizResponseService.quizzesParticipatedIn(req.user.id);
+  const result = [];
+
+  for (const quiz of quizzes) {
+    result.push(await quizService.getById(quiz._id));
+  }
+
+  res.status(httpStatus.OK).send(result);
+});
+
 const getByQuiz = catchAsync(async (req, res) => {
   let response = await quizResponseService.getCreatedAts(req.params.quizId);
   const createdAts = response.map(({ createdAt }) => createdAt);
@@ -185,4 +196,5 @@ module.exports = {
   getByQuiz,
   getByQuizAndUserOther,
   evaluate,
+  quizzesParticipatedIn,
 };

@@ -1,6 +1,10 @@
 const httpStatus = require('http-status');
 const { pick, ApiError, catchAsync } = require('../utils');
-const { userService, quizService } = require('../services');
+const {
+  userService,
+  quizService,
+  quizResponseService,
+} = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
