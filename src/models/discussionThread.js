@@ -12,6 +12,7 @@ const discussionThreadSchema = Schema(
       type: SchemaTypes.ObjectId,
       ref: 'quiz',
     },
+    title: String,
     text: String,
     image: String,
   },
