@@ -176,7 +176,7 @@ const getParticipantCount = async (req, res) => {
   );
 
   res.status(200).send({
-    count: response[0].totalParticipants,
+    count: response[0].totalParticipants || 0,
   });
 };
 
