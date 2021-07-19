@@ -167,7 +167,6 @@ const quizzesParticipatedIn = catchAsync(async (req, res) => {
   for (const quiz of quizzes) {
     results.push(await quizService.getById(quiz));
   }
-  console.log(results);
 
   res.status(httpStatus.OK).send(results);
 });
