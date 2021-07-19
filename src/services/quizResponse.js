@@ -10,18 +10,12 @@ const getByUser = async userId =>
   QuizResponse.find({ responder: userId }).populate('quiz');
 
 const quizzesParticipatedIn = async userId =>
-  QuizResponse.aggregate([
+  QuizResponse.find(
     {
-      $match: {
-        responder: userId,
-      },
+      responder: userId,
     },
-    {
-      $group: {
-        _id: '$quiz',
-      },
-    },
-  ]);
+    'quiz'
+  );
 
 const getByQuizAndUser = async (quizId, userId) =>
   QuizResponse.find({ responder: userId, quiz: quizId })

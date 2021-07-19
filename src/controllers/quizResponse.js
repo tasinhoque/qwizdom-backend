@@ -156,14 +156,20 @@ const getByQuizAndUserOther = catchAsync(async (req, res) => {
 });
 
 const quizzesParticipatedIn = catchAsync(async (req, res) => {
-  const quizzes = await quizResponseService.quizzesParticipatedIn(req.user.id);
-  const result = [];
+  const unique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  };
+
+  const query = await quizResponseService.quizzesParticipatedIn(req.user.id);
+  const quizzes = query.map(({ quiz }) => quiz).filter(unique);
+  const results = [];
 
   for (const quiz of quizzes) {
-    result.push(await quizService.getById(quiz._id));
+    results.push(await quizService.getById(quiz));
   }
+  console.log(results);
 
-  res.status(httpStatus.OK).send(result);
+  res.status(httpStatus.OK).send(results);
 });
 
 const getByQuiz = catchAsync(async (req, res) => {
