@@ -1,41 +1,56 @@
 {
+  "isScheduled": false,
+  "isPublished": true,
+  "isTest": true,
+  "categories": ["60d1cd36bb5d6069d8149f42"],
+  "hasAutoEvaluation": true,
+  "name": "Frustum Search",
+  "description": "",
+  "duration": 45,
+  "coverImage": "https://user-images.githubusercontent.com/27550808/126111179-865576f5-5754-4403-87bb-2afc3f936aea.jpg",
+  "creator": {
+    "isEmailVerified": false,
+    "subscribedQuizzes": ["60c9952220f8ec283a56c7ae"],
+    "name": "Tasin Hoque",
+    "email": "tasinhoque@gmail.com",
+    "createdAt": "2021-06-15T14:12:58.399Z",
+    "avatar": "https://res.cloudinary.com/ddu4b39dw/image/upload/v1624968858/ys2h0nxout66xbcfghy9.jpg",
+    "id": "60c8b56a95d97f39483bc948"
+  },
+  "createdAt": "2021-07-19T09:36:22.792Z",
+  "totalPoints": 10,
+  "totalParticipants": 2,
+  "averageRating": 4,
+  "id": "60f54796ae87f5172830e0b0",
   "stages": [
     {
-      "_id": "60e9ace6733cce24bc9f94e4",
-      "stageId": 0,
+      "stage": {
+        "quiz": "60f54796ae87f5172830e0b0",
+        "serial": 0,
+        "createdAt": "2021-07-19T09:36:44.068Z",
+        "id": "60f547acae87f5172830e0c3"
+      },
       "questions": [
         {
-          "_id": "60e9ace6733cce24bc9f94e4",
-          "questionId": 0,
+          "stage": "60f547acae87f5172830e0c3",
+          "title": "Cha",
           "points": 10,
-          "title": "How big is earth?",
+          "options": [
+            {
+              "_id": "60f547acae87f5172830e0c7",
+              "text": "dfds",
+              "isAnswer": false
+            },
+            {
+              "_id": "60f547acae87f5172830e0c8",
+              "text": "dfs",
+              "isAnswer": true
+            }
+          ],
           "type": "mcq",
-          "options": [
-            {
-              "isAnswer": true,
-              "text": "500km"
-            },
-            {
-              "isAnswer": false,
-              "text": "600km"
-            }
-          ]
-        },
-        {
-          "questionId": 1,
-          "points": 10,
-          "title": "What is 2 + 2?",
-          "type": "checkbox",
-          "options": [
-            {
-              "isAnswer": true,
-              "text": "500km"
-            },
-            {
-              "isAnswer": false,
-              "text": "600km"
-            }
-          ]
+          "serial": 0,
+          "createdAt": "2021-07-19T09:36:44.373Z",
+          "id": "60f547acae87f5172830e0c6"
         }
       ]
     }
