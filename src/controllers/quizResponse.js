@@ -242,6 +242,7 @@ const getPieChartData = catchAsync(async (req, res) => {
     })
   );
 
+  pieChartData.sort((a, b) => a.question.serial - b.question.serial);
   res.status(httpStatus.OK).send(pieChartData);
 });
 
