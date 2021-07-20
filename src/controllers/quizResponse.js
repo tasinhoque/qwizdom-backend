@@ -214,10 +214,10 @@ const getPieChartData = catchAsync(async (req, res) => {
             questionMap[question.id] = {};
           }
 
-          for (let i = 1; i <= questionResponse.options.length; i++) {
-            questionMap[question.id][`option${i}`] =
-              (questionMap[question.id][`option${i}`] || 0) +
-              Number(questionResponse.options[i - 1]);
+          for (let i = 0; i < questionResponse.options.length; i++) {
+            questionMap[question.id][question.options[i].text] =
+              (questionMap[question.id][question.options[i].text] || 0) +
+              Number(questionResponse.options[i]);
           }
         }
       }

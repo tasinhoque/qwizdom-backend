@@ -1,7 +1,43 @@
 {
-  "name": "Web Development Fundamentals",
-  "startTime": "2021-4-24",
-  "duration": 50,
-  "description": "This is a quiz to hone your skills.",
-  "coverImage": "www.avatar.ui/50"
+  "stages": [
+    {
+      "_id": "60e9ace6733cce24bc9f94e4",
+      "stageId": 0,
+      "questions": [
+        {
+          "_id": "60e9ace6733cce24bc9f94e4",
+          "questionId": 0,
+          "points": 10,
+          "title": "How big is earth?",
+          "type": "mcq",
+          "options": [
+            {
+              "isAnswer": true,
+              "text": "500km"
+            },
+            {
+              "isAnswer": false,
+              "text": "600km"
+            }
+          ]
+        },
+        {
+          "questionId": 1,
+          "points": 10,
+          "title": "What is 2 + 2?",
+          "type": "checkbox",
+          "options": [
+            {
+              "isAnswer": true,
+              "text": "500km"
+            },
+            {
+              "isAnswer": false,
+              "text": "600km"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

@@ -165,6 +165,58 @@ const createComplete = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send({ quizId, stages: localStages, totalPoints });
 });
 
+const updateComplete = catchAsync(async (req, res) => {
+  const { stages } = req.body;
+  const { quizId } = req.params;
+
+  let totalPoints = 0;
+  let localStages = [];
+  let j = 0;
+  let i = 0;
+
+  for (const { questions, _id } of stages) {
+    let stage;
+    if (_id !== undefined) {
+      stage = await stageService.update(_id, {
+        serial: j,
+      });
+    } else {
+      stage = await stageService.create({
+        quiz: quizId,
+        serial: j,
+      });
+    }
+    j++;
+
+    let localQuestions = [];
+
+    for (const { _id, ...questionFields } of questions) {
+      let question;
+
+      if (_id !== undefined) {
+        question = await questionService.update(_id, {
+          stage: stage.id,
+          ...questionFields,
+          serial: i,
+        });
+      } else {
+        question = await questionService.create({
+          stage: stage.id,
+          ...questionFields,
+          serial: i,
+        });
+      }
+      localQuestions.push(question);
+      totalPoints += questionFields.points;
+      i++;
+    }
+
+    localStages.push({ stage, questions: localQuestions });
+  }
+
+  res.status(httpStatus.OK).send({ quizId, stages: localStages, totalPoints });
+});
+
 const getSubscriberCount = async (req, res) => {
   const count = await userService.getSubscriberCount(req.params.quizId);
   res.status(200).send({ count });
@@ -191,4 +243,5 @@ module.exports = {
   getByIdComplete,
   getSubscriberCount,
   getParticipantCount,
+  updateComplete,
 };
