@@ -216,7 +216,8 @@ const getPieChartData = catchAsync(async (req, res) => {
 
           for (let i = 1; i <= questionResponse.options.length; i++) {
             questionMap[question.id][`option${i}`] =
-              (questionMap[question.id][`option${i}`] || 0) + 1;
+              (questionMap[question.id][`option${i}`] || 0) +
+              Number(questionResponse.options[i - 1]);
           }
         }
       }
