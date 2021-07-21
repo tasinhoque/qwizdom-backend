@@ -25,6 +25,6 @@ router.use('/question-responses', questionResponseRouter);
 router.use('/quiz-responses', quizResponseRouter);
 router.use('/reviews', reviewRouter);
 router.use('/stages', stageRouter);
-router.use('/notification', notificationRouter);
+router.use('/notifications', notificationRouter);
 
 module.exports = router;

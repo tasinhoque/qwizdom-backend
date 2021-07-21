@@ -5,6 +5,7 @@ const {
   questionResponseService,
   questionService,
   quizService,
+  notificationService,
 } = require('../services');
 
 const getByUser = catchAsync(async (req, res) => {
@@ -122,6 +123,14 @@ const evaluate = catchAsync(async (req, res) => {
   quizResponse = await quizResponseService.update(quizResponseId, {
     totalPoints,
     isEvaluated: true,
+  });
+
+  const quiz = await quizService.getById(quizResponse.quiz);
+
+  await notificationService({
+    recipient: quizResponse.responder,
+    text: "Your submission for '" + quiz.name + "' has been evaluated",
+    link: 'evaluation',
   });
 
   res

@@ -9,6 +9,10 @@ const notificationSchema = Schema(
     },
     link: String,
     text: String,
+    isRead: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
