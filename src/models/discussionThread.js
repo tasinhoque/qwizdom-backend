@@ -15,6 +15,16 @@ const discussionThreadSchema = Schema(
     title: String,
     text: String,
     image: String,
+    totalComments: {
+      type: Number,
+      default: 0,
+    },
+    likes: [
+      {
+        type: SchemaTypes.ObjectId,
+        ref: 'user',
+      },
+    ],
   },
   { timestamps: true }
 );

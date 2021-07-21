@@ -8,8 +8,15 @@ const getByDiscussionThread = async discussionThread =>
 const update = async (id, updateBody) =>
   Comment.findByIdAndUpdate(id, updateBody, { new: true }).orFail();
 
+const remove = async id => Comment.findByIdAndRemove(id).orFail();
+
+const removeByThread = async id =>
+  Comment.deleteMany({ discussionThread: id }).orFail();
+
 module.exports = {
   create,
   update,
   getByDiscussionThread,
+  remove,
+  removeByThread,
 };

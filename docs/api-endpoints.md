@@ -12,30 +12,8 @@
 - [x] GET /quizzes
 - [x] GET /quizzes/search (query: q)
 - [x] POST /quizzes
-
-- POST /quizzes/complete
-
-Request Body:
-
-```json
-{
-  "quizId": "60c8b649b1163904e4f9d6da",
-  "stages": [
-    [
-      {
-        "questionType": "mcq"
-      },
-      {
-        "type": "checkbox"
-      }
-    ]
-  ]
-}
-```
-
-- PATCH /quizzes/:quizId
+- [x] PATCH /quizzes/:quizId/complete
 - DELETE /quizzes/:quizId
-- POST /quizzes/:quizId/publish
 
 ### Stage Routes
 
@@ -47,11 +25,11 @@ Request Body:
 
 ### Leaderboard Routes
 
-- GET /quizzes/:quizId/leaderboard
+- [x] GET /quizzes/:quizId/leaderboard
 
 ### Review Routes
 
-- GET /quizzes/:quizId/reviews
+- [x] GET /quizzes/:quizId/reviews
 - [x] POST /quizzes/:quizId/reviews
 
 ### Discussion Thread Routes
@@ -61,7 +39,7 @@ Request Body:
 
 ### Quiz Response Routes
 
-- GET /quizzes/:quizId/responses
+- [x] GET /quizzes/:quizId/responses
 
 ## Stage Routes
 
@@ -88,8 +66,8 @@ Request Body:
 ## Discussion Thread Routes
 
 - [x] GET /discussion-threads/:discussionThreadId
-- DELETE /discussion-threads/:discussionThreadId
-- PATCH /discussion-threads/:discussionThreadId
+- [x] DELETE /discussion-threads/:discussionThreadId
+- [x] PATCH /discussion-threads/:discussionThreadId
 
 ### Comment Routes
 
@@ -98,9 +76,8 @@ Request Body:
 
 ## Comment Routes
 
-- GET /comments/:commentId
-- PATCH /comments/:commentId
-- DELETE /comments/:commentId
+- [x] PATCH /comments/:commentId
+- [x] DELETE /comments/:commentId
 
 ## Review Routes
 
@@ -133,21 +110,3 @@ Request Body:
 ## Notification Routes
 
 - GET /notifications
-
-# JSON
-
-```json
-{
-  "stageResponses": [
-    {
-      "stage": "60db05cfc67d1f67c4d19dbe",
-      "responses": [
-        {
-          "questionId": "60db05d0c67d1f67c4d19dc0",
-          "options": [1]
-        }
-      ]
-    }
-  ]
-}
-```
