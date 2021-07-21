@@ -127,7 +127,7 @@ const evaluate = catchAsync(async (req, res) => {
 
   const quiz = await quizService.getById(quizResponse.quiz);
 
-  await notificationService({
+  await notificationService.create({
     recipient: quizResponse.responder,
     text: "Your submission for '" + quiz.name + "' has been evaluated",
     link: 'evaluation',
