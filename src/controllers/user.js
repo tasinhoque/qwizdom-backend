@@ -71,6 +71,21 @@ const flipSubscription = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const getUpcomingSubscribedQuizzes = catchAsync(async (req, res) => {
+  const user = await userService.getUserById(req.user.id, 'subscribedQuizzes');
+
+  let results = user.subscribedQuizzes
+    .filter(quiz => new Date(quiz.startTime).getTime() >= Date.now())
+    .sort(
+      (a, b) =>
+        new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
+    );
+
+  res.status(httpStatus.OK).send({
+    results,
+  });
+});
+
 const getSubscribedQuizzes = catchAsync(async (req, res) => {
   const page = req.query.page || 1;
   const limit = req.query.limit || 10;
@@ -101,4 +116,5 @@ module.exports = {
   getSubscribedQuizzes,
   updateLoggedInUser,
   updateAvatar,
+  getUpcomingSubscribedQuizzes,
 };

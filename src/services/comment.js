@@ -10,8 +10,7 @@ const update = async (id, updateBody) =>
 
 const remove = async id => Comment.findByIdAndRemove(id).orFail();
 
-const removeByThread = async id =>
-  Comment.deleteMany({ discussionThread: id }).orFail();
+const removeByThread = async id => Comment.deleteMany({ discussionThread: id });
 
 module.exports = {
   create,
