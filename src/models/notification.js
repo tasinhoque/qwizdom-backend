@@ -1,8 +1,12 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, SchemaTypes } = require('mongoose');
 const { toJSON } = require('./plugins');
 
 const notificationSchema = Schema(
   {
+    recipient: {
+      type: SchemaTypes.ObjectId,
+      ref: 'user',
+    },
     link: String,
     text: String,
   },

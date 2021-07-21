@@ -10,6 +10,7 @@ const questionResponseRouter = require('./questionResponse');
 const quizResponseRouter = require('./quizResponse');
 const reviewRouter = require('./review');
 const stageRouter = require('./stage');
+const notificationRouter = require('./notification');
 
 const router = Router();
 
@@ -24,5 +25,6 @@ router.use('/question-responses', questionResponseRouter);
 router.use('/quiz-responses', quizResponseRouter);
 router.use('/reviews', reviewRouter);
 router.use('/stages', stageRouter);
+router.use('/notification', notificationRouter);
 
 module.exports = router;
