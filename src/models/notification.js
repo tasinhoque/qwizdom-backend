@@ -9,6 +9,15 @@ const notificationSchema = Schema(
     },
     link: String,
     text: String,
+    quiz: {
+      type: SchemaTypes.ObjectId,
+      ref: 'quizzes',
+    },
+    totalStudents: Number,
+    type: {
+      type: String,
+      enum: ['evaluation', 'pending', 'scheduledQuizStart'],
+    },
     isRead: {
       type: Boolean,
       default: false,

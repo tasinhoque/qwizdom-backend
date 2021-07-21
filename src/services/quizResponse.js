@@ -42,6 +42,13 @@ const getParticipantCount = async quizId =>
     },
   ]);
 
+const getPendingCount = async (quizId, createdAts) =>
+  QuizResponse.countDocuments({
+    quiz: quizId,
+    createdAt: { $in: createdAts },
+    isEvaluated: false,
+  });
+
 const getByQuizForLeaderboard = async (quizId, createdAts) =>
   QuizResponse.find({
     quiz: quizId,
@@ -100,4 +107,5 @@ module.exports = {
   getById,
   quizzesParticipatedIn,
   getByQuizForPieChart,
+  getPendingCount,
 };

@@ -130,7 +130,7 @@ const evaluate = catchAsync(async (req, res) => {
   await notificationService.create({
     recipient: quizResponse.responder,
     text: "Your submission for '" + quiz.name + "' has been evaluated",
-    link: 'evaluation',
+    link: `/quiz-result/${quizResponse.quiz}`,
   });
 
   res
@@ -255,6 +255,22 @@ const getPieChartData = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(pieChartData);
 });
 
+const getTaskPageData = catchAsync(async (req, res) => {
+  const quizzes = await quizService.getByCreator(req.user.id);
+
+  let response = [];
+
+  for (const quiz of quizzes) {
+    let createdAtResponse = await quizResponseService.getCreatedAts(quizId);
+    const createdAts = createdAtResponse.map(({ createdAt }) => createdAt);
+
+    const count = await quizResponseService.getPendingCount(
+      quiz.id,
+      createdAts
+    );
+  }
+});
+
 module.exports = {
   create,
   getByUser,
@@ -265,4 +281,5 @@ module.exports = {
   evaluate,
   quizzesParticipatedIn,
   getPieChartData,
+  getTaskPageData,
 };
