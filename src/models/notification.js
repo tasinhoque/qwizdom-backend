@@ -13,11 +13,24 @@ const notificationSchema = Schema(
       type: SchemaTypes.ObjectId,
       ref: 'quizzes',
     },
-    totalStudents: Number,
     type: {
       type: String,
-      enum: ['evaluation', 'pending', 'scheduledQuizStart'],
+      enum: [
+        'publicationOfResult',
+        'pendingSubmission',
+        'startingOfScheduledQuiz',
+      ],
     },
+    validFrom: {
+      type: Date,
+      default: new Date(),
+    },
+    participants: [
+      {
+        type: SchemaTypes.ObjectId,
+        ref: 'user',
+      },
+    ],
     isRead: {
       type: Boolean,
       default: false,

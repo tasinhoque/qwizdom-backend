@@ -11,6 +11,7 @@ const quizSchema = Schema(
     name: String,
     startTime: Date,
     duration: Number,
+    hasShuffle: Boolean,
     isScheduled: {
       type: Boolean,
       default: false,
