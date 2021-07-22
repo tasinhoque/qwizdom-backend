@@ -91,7 +91,10 @@ const getSubscribedQuizzes = catchAsync(async (req, res) => {
   const page = req.query.page || 1;
   const limit = req.query.limit || 10;
 
-  const user = await userService.getUserById(req.user.id, 'subscribedQuizzes');
+  const user = await userService.getUserById(req.user.id, {
+    path: 'subscribedQuizzes',
+    populate: 'categories',
+  });
 
   let results = user.subscribedQuizzes;
   const totalResults = results.length;

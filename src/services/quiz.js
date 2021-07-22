@@ -11,7 +11,7 @@ const getByCreatorForTaskPage = async userId =>
   Quiz.find({ creator: userId, hasAutoEvaluation: false });
 
 const getByCreator = async (userId, filter) =>
-  Quiz.paginate({ ...filter, creator: userId }, {});
+  Quiz.paginate({ ...filter, creator: userId }, { populate: 'categories' });
 
 const getPreviews = async (filters, options) => Quiz.paginate(filters, options);
 
