@@ -7,6 +7,9 @@ const update = async (id, updateBody) =>
 
 const get = async (filters, options) => Quiz.paginate(filters, options);
 
+const getByCreatorForTaskPage = async userId =>
+  Quiz.find({ creator: userId, hasAutoEvaluation: false });
+
 const getByCreator = async (userId, filter) =>
   Quiz.paginate({ ...filter, creator: userId }, {});
 
@@ -19,6 +22,7 @@ module.exports = {
   update,
   get,
   getByCreator,
+  getByCreatorForTaskPage,
   getPreviews,
   getById,
 };

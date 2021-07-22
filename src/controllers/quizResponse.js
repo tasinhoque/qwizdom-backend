@@ -256,19 +256,25 @@ const getPieChartData = catchAsync(async (req, res) => {
 });
 
 const getTaskPageData = catchAsync(async (req, res) => {
-  const quizzes = await quizService.getByCreator(req.user.id);
+  const quizzes = await quizService.getByCreatorForTaskPage(req.user.id);
 
   let response = [];
 
   for (const quiz of quizzes) {
-    let createdAtResponse = await quizResponseService.getCreatedAts(quizId);
+    let createdAtResponse = await quizResponseService.getCreatedAts(quiz.id);
     const createdAts = createdAtResponse.map(({ createdAt }) => createdAt);
 
     const count = await quizResponseService.getPendingCount(
       quiz.id,
       createdAts
     );
+
+    if (count) {
+      response.push({ quiz, count });
+    }
   }
+
+  res.status(httpStatus.OK).send(response);
 });
 
 module.exports = {

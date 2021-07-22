@@ -75,15 +75,16 @@ const getUpcomingSubscribedQuizzes = catchAsync(async (req, res) => {
   const user = await userService.getUserById(req.user.id, 'subscribedQuizzes');
 
   let results = user.subscribedQuizzes
-    .filter(quiz => new Date(quiz.startTime).getTime() >= Date.now())
+    .filter(
+      quiz =>
+        quiz.isScheduled && new Date(quiz.startTime).getTime() >= Date.now()
+    )
     .sort(
       (a, b) =>
         new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
     );
 
-  res.status(httpStatus.OK).send({
-    results,
-  });
+  res.status(httpStatus.OK).send(results);
 });
 
 const getSubscribedQuizzes = catchAsync(async (req, res) => {

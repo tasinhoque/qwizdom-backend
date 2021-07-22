@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { userController } = require('../controllers');
+const { userController, quizResponseController } = require('../controllers');
 const { auth, uploadFile } = require('../middlewares');
 const { multer } = require('../config');
 
@@ -13,6 +13,13 @@ router.patch(
   multer.single('avatar'),
   uploadFile,
   userController.updateAvatar
+);
+
+router.get('/tasks/creator', auth, quizResponseController.getTaskPageData);
+router.get(
+  '/tasks/participant',
+  auth,
+  userController.getUpcomingSubscribedQuizzes
 );
 
 router
