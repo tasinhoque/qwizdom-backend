@@ -15,7 +15,8 @@ const getByCreator = async (userId, filter) =>
 
 const getPreviews = async (filters, options) => Quiz.paginate(filters, options);
 
-const getById = async id => Quiz.findById(id).populate('creator').orFail();
+const getById = async id =>
+  Quiz.findById(id).populate('creator categories').orFail();
 
 module.exports = {
   create,
