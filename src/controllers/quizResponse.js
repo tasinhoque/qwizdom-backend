@@ -133,6 +133,7 @@ const createComplete = catchAsync(async (req, res) => {
 
 const evaluate = catchAsync(async (req, res) => {
   const { quizResponseId } = req.params;
+  const userId = req.user.id;
 
   for (const { points, questionResponseId } of req.body) {
     await questionResponseService.update(questionResponseId, {
@@ -163,10 +164,7 @@ const evaluate = catchAsync(async (req, res) => {
     link: `/quiz/${quizResponse.quiz}/result`,
   });
 
-  const notification = await notificationService.getPending(
-    quizResponse.responder,
-    quiz.id
-  );
+  const notification = await notificationService.getPending(userId, quiz.id);
 
   if (notification !== null) {
     if (notification.participants.length === 1) {
