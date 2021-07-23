@@ -130,7 +130,7 @@ const evaluate = catchAsync(async (req, res) => {
   await notificationService.create({
     recipient: quizResponse.responder,
     text: "Your submission for '" + quiz.name + "' has been evaluated",
-    link: `/quiz-result/${quizResponse.quiz}`,
+    link: `/quiz/${quizResponse.quiz}/result`,
   });
 
   res
