@@ -108,7 +108,7 @@ const createComplete = catchAsync(async (req, res) => {
         recipient: quiz.creator,
         quiz: quizId,
         type: 'pendingSubmission',
-        link: `/all-submissions/${quizId}`,
+        link: `/quiz/${quizId}/submissions`,
         participants: [userId],
         text: `You have 1 pending submission to evaluate for your quiz '${quiz.name}'`,
       });

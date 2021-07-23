@@ -78,7 +78,7 @@ const flipSubscription = catchAsync(async (req, res) => {
         validTill: new Date(
           new Date(quiz.startTime).getTime() + quiz.duration * 60000
         ),
-        link: `/quiz-home/${quizId}`,
+        link: `/quiz/${quizId}/home`,
         text: `Scheduled quiz '${quiz.name}' has started`,
       });
     }
