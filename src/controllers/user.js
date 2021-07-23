@@ -3,7 +3,7 @@ const { pick, ApiError, catchAsync } = require('../utils');
 const {
   userService,
   quizService,
-  quizResponseService,
+  notificationService,
 } = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
@@ -49,22 +49,43 @@ const deleteUser = catchAsync(async (req, res) => {
 });
 
 const flipSubscription = catchAsync(async (req, res) => {
-  const user = await userService.getUserById(req.user.id);
+  const userId = req.user.id;
+  const { quizId } = req.params;
+  const user = await userService.getUserById(userId);
 
   let update = {};
   let increment = 0;
-  const innerContent = { subscribedQuizzes: req.params.quizId };
+  const innerContent = { subscribedQuizzes: quizId };
+  const quiz = await quizService.getById(quizId);
 
-  if (user.subscribedQuizzes.includes(req.params.quizId)) {
+  if (user.subscribedQuizzes.includes(quizId)) {
     update = { $pull: innerContent };
     increment = -1;
+
+    if (quiz.isScheduled) {
+      await notificationService.unsubscribe(userId, quizId);
+    }
   } else {
     update = { $push: innerContent };
     increment = 1;
+
+    if (quiz.isScheduled) {
+      await notificationService.create({
+        recipient: userId,
+        quiz: quizId,
+        type: 'startingOfScheduledQuiz',
+        validFrom: quiz.startTime,
+        validTill: new Date(
+          new Date(quiz.startTime).getTime() + quiz.duration * 60000
+        ),
+        link: `/quiz-home/${quizId}`,
+        text: `Scheduled quiz '${quiz.name}' has started`,
+      });
+    }
   }
 
-  await userService.update(req.user.id, update);
-  await quizService.update(req.params.quizId, {
+  await userService.update(userId, update);
+  await quizService.update(quizId, {
     $inc: { totalSubscribers: increment },
   });
 

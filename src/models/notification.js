@@ -25,6 +25,10 @@ const notificationSchema = Schema(
       type: Date,
       default: new Date(),
     },
+    validTill: {
+      type: Date,
+      default: new Date(new Date().setFullYear(new Date().getFullYear() + 10)),
+    },
     participants: [
       {
         type: SchemaTypes.ObjectId,

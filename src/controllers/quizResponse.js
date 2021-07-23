@@ -22,6 +22,8 @@ const create = catchAsync(async (req, res) => {
 const createComplete = catchAsync(async (req, res) => {
   let localStageResponses = [];
   let totalPoints = 0;
+  const userId = req.user.id;
+  const { quizId } = req.params;
 
   for (const stageResponse of req.body.stageResponses) {
     let localResponses = [];
@@ -97,6 +99,31 @@ const createComplete = catchAsync(async (req, res) => {
   );
 
   await quizService.update(req.params.quizId, element);
+
+  if (!quiz.hasAutoEvaluation) {
+    const notification = await notificationService.getPending(userId, quizId);
+
+    if (notification === null) {
+      await notificationService.create({
+        recipient: quiz.creator,
+        quiz: quizId,
+        type: 'pendingSubmission',
+        link: `/all-submissions/${quizId}`,
+        participants: [userId],
+        text: `You have 1 pending submission to evaluate for your quiz '${quiz.name}'`,
+      });
+    } else {
+      if (!notification.participants.includes(userId)) {
+        await notificationService.update(notification.id, {
+          isRead: false,
+          $push: { participants: userId },
+          text: `You have ${
+            notification.participants.length + 1
+          } pending submissions to evaluate for your quiz '${quiz.name}'`,
+        });
+      }
+    }
+  }
 
   res.status(httpStatus.CREATED).send(quizResponse);
 });
