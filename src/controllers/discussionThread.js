@@ -14,25 +14,43 @@ const create = catchAsync(async (req, res) => {
 });
 
 const get = catchAsync(async (req, res) => {
-  const discussionThread = await discussionThreadService.get(
+  const discussionThread = await discussionThreadService.getById(
     req.params.discussionThreadId
   );
   res.status(httpStatus.OK).send(discussionThread);
 });
 
-const like = catchAsync(async (req, res) => {
-  await discussionThreadService.update(req.params.discussionThreadId, {
-    $push: { likes: req.user.id },
-  });
-  res.status(httpStatus.NO_CONTENT).send();
-});
+const flipVote = async (req, res, type) => {
+  const { discussionThreadId } = req.params;
+  const userId = req.user.id;
+  const discussionThread = await discussionThreadService.getById(
+    discussionThreadId
+  );
 
-const unlike = catchAsync(async (req, res) => {
-  await discussionThreadService.update(req.params.discussionThreadId, {
-    $pull: { likes: req.user.id },
-  });
+  let update = {};
+  let innerContent;
+  let votes;
+
+  if (type === 'up') {
+    innerContent = { upvotes: req.user.id };
+    votes = discussionThread.upvotes;
+  } else {
+    innerContent = { downvotes: req.user.id };
+    votes = discussionThread.downvotes;
+  }
+
+  if (votes.includes(userId)) {
+    update = { $pull: innerContent };
+  } else {
+    update = { $push: innerContent };
+  }
+  await discussionThreadService.update(discussionThreadId, update);
+
   res.status(httpStatus.NO_CONTENT).send();
-});
+};
+
+const flipUpvote = catchAsync(async (req, res) => flipVote(req, res, 'up'));
+const flipDownvote = catchAsync(async (req, res) => flipVote(req, res, 'down'));
 
 const update = catchAsync(async (req, res) => {
   const response = await discussionThreadService.update(
@@ -66,8 +84,8 @@ module.exports = {
   create,
   get,
   getByQuiz,
-  like,
-  unlike,
   update,
   remove,
+  flipUpvote,
+  flipDownvote,
 };

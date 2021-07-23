@@ -13,11 +13,16 @@ router
   .patch(auth, discussionThreadController.update)
   .delete(auth, discussionThreadController.remove);
 
-router.post('/:discussionThreadId/like', auth, discussionThreadController.like);
 router.post(
-  '/:discussionThreadId/unlike',
+  '/:discussionThreadId/upvote/flip',
   auth,
-  discussionThreadController.unlike
+  discussionThreadController.flipUpvote
+);
+
+router.post(
+  '/:discussionThreadId/downvote/flip',
+  auth,
+  discussionThreadController.flipDownvote
 );
 
 module.exports = router;

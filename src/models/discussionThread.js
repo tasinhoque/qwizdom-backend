@@ -19,7 +19,13 @@ const discussionThreadSchema = Schema(
       type: Number,
       default: 0,
     },
-    likes: [
+    upvotes: [
+      {
+        type: SchemaTypes.ObjectId,
+        ref: 'user',
+      },
+    ],
+    downvotes: [
       {
         type: SchemaTypes.ObjectId,
         ref: 'user',

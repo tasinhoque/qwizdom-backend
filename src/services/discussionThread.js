@@ -7,7 +7,8 @@ const update = async (id, updateBody) =>
 
 const remove = async id => DiscussionThread.findByIdAndRemove(id).orFail();
 
-const get = async id => DiscussionThread.findById(id).populate('user').orFail();
+const getById = async id =>
+  DiscussionThread.findById(id).populate('user').orFail();
 
 const getByQuiz = async (quizId, page, limit) =>
   DiscussionThread.paginate(
@@ -18,7 +19,7 @@ const getByQuiz = async (quizId, page, limit) =>
 module.exports = {
   create,
   update,
-  get,
+  getById,
   getByQuiz,
   remove,
 };
