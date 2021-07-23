@@ -49,13 +49,21 @@ const getPendingCount = async (quizId, createdAts) =>
     isEvaluated: false,
   });
 
-const getByQuizForLeaderboard = async (quizId, createdAts) =>
+const getByQuizForLeaderboardEvaluated = async (quizId, createdAts) =>
   QuizResponse.find({
     quiz: quizId,
     createdAt: { $in: createdAts },
+    isEvaluated: true,
   })
     .populate({ path: 'responder' })
     .sort('-totalPoints');
+
+const getByQuizForLeaderboardPending = async (quizId, createdAts) =>
+  QuizResponse.find({
+    quiz: quizId,
+    createdAt: { $in: createdAts },
+    isEvaluated: false,
+  }).populate({ path: 'responder' });
 
 const getByQuizForPieChart = async (quizId, createdAts) =>
   QuizResponse.find({
@@ -103,7 +111,8 @@ module.exports = {
   getParticipantCount,
   getCreatedAts,
   getByQuiz,
-  getByQuizForLeaderboard,
+  getByQuizForLeaderboardEvaluated,
+  getByQuizForLeaderboardPending,
   getById,
   quizzesParticipatedIn,
   getByQuizForPieChart,

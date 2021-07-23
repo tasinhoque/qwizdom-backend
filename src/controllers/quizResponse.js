@@ -101,7 +101,10 @@ const createComplete = catchAsync(async (req, res) => {
   await quizService.update(req.params.quizId, element);
 
   if (!quiz.hasAutoEvaluation) {
-    const notification = await notificationService.getPending(userId, quizId);
+    const notification = await notificationService.getPending(
+      quiz.creator,
+      quizId
+    );
 
     if (notification === null) {
       await notificationService.create({

@@ -6,12 +6,17 @@ const get = catchAsync(async (req, res) => {
   let response = await quizResponseService.getCreatedAts(req.params.quizId);
   const createdAts = response.map(({ createdAt }) => createdAt);
 
-  response = await quizResponseService.getByQuizForLeaderboard(
+  const evaluated = await quizResponseService.getByQuizForLeaderboardEvaluated(
     req.params.quizId,
     createdAts
   );
 
-  res.status(httpStatus.OK).send(response);
+  const pending = await quizResponseService.getByQuizForLeaderboardPending(
+    req.params.quizId,
+    createdAts
+  );
+
+  res.status(httpStatus.OK).send({ evaluated, pending });
 });
 
 module.exports = { get };
