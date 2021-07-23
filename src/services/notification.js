@@ -2,6 +2,8 @@ const { Notification } = require('../models');
 
 const create = async data => Notification.create(data);
 
+const remove = async (id, body) => Notification.findByIdAndRemove(id).orFail();
+
 const update = async (id, body) =>
   Notification.findByIdAndUpdate(id, body).orFail();
 
@@ -36,4 +38,5 @@ module.exports = {
   getUnreadCount,
   unsubscribe,
   getPending,
+  remove,
 };

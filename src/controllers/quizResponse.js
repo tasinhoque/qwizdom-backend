@@ -163,6 +163,24 @@ const evaluate = catchAsync(async (req, res) => {
     link: `/quiz/${quizResponse.quiz}/result`,
   });
 
+  const notification = await notificationService.getPending(
+    quizResponse.responder,
+    quiz.id
+  );
+
+  if (notification !== null) {
+    if (notification.participants.length === 1) {
+      await notificationService.remove(notification.id);
+    } else {
+      await notificationService.update(notification.id, {
+        $pull: { participants: quizResponse.responder },
+        text: `You have ${
+          notification.participants.length - 1
+        } pending submission to evaluate for your quiz '${quiz.name}'`,
+      });
+    }
+  }
+
   res
     .status(httpStatus.OK)
     .send({ message: 'Total points is now ' + totalPoints });
