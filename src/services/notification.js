@@ -15,7 +15,12 @@ const getForUser = async userId =>
   }).sort('-createdAt');
 
 const getUnreadCount = async userId =>
-  Notification.countDocuments({ recipient: userId, isRead: false });
+  Notification.countDocuments({
+    recipient: userId,
+    isRead: false,
+    validFrom: { $lte: new Date() },
+    validTill: { $gt: new Date() },
+  });
 
 const getPending = async (userId, quizId) =>
   Notification.findOne({
