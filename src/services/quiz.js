@@ -15,6 +15,8 @@ const getByCreator = async (userId, filter) =>
 
 const getPreviews = async (filters, options) => Quiz.paginate(filters, options);
 
+const remove = async id => Quiz.findByIdAndDelete(id).orFail();
+
 const getById = async id =>
   Quiz.findById(id).populate('creator categories').orFail();
 
@@ -26,4 +28,5 @@ module.exports = {
   getByCreatorForTaskPage,
   getPreviews,
   getById,
+  remove,
 };

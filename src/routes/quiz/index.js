@@ -40,7 +40,8 @@ router.get('/:quizId/pie-chart', auth, quizResponseController.getPieChartData);
 router
   .route('/:quizId')
   .get(auth, quizController.getById)
-  .patch(auth, quizController.update);
+  .patch(auth, quizController.update)
+  .delete(auth, quizController.remove);
 
 router.get('/:quizId/complete', auth, quizController.getByIdComplete);
 

@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { catchAsync } = require('../utils');
-const { stageService, quizService } = require('../services');
+const { stageService, quizService, questionService } = require('../services');
 
 const create = catchAsync(async (req, res) => {
   const stage = await stageService.create(req.body);
@@ -8,6 +8,16 @@ const create = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(stage);
 });
 
+const remove = catchAsync(async (req, res) => {
+  const { stageId } = req.params;
+
+  await quizService.remove(stageId);
+  await questionService.deleteByStage(stageId);
+
+  res.status(httpStatus.NO_CONTENT).send();
+});
+
 module.exports = {
   create,
+  remove,
 };

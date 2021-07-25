@@ -8,6 +8,14 @@ const router = Router();
 
 router.use('/:questionId/responses', responseRouter);
 
-router.patch('/:questionId/image', auth, multer.single('image'), uploadFile, questionController.uploadImage);
+router.patch(
+  '/:questionId/image',
+  auth,
+  multer.single('image'),
+  uploadFile,
+  questionController.uploadImage
+);
+
+router.delete('/:questionId', questionController.remove);
 
 module.exports = router;

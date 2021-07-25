@@ -233,6 +233,13 @@ const getParticipantCount = async (req, res) => {
   });
 };
 
+const remove = catchAsync(async (req, res) => {
+  const { quizId } = req.params;
+  await quizService.remove(quizId);
+  await stageService.deleteByQuiz(quizId);
+  res.status(httpStatus.NO_CONTENT).send();
+});
+
 module.exports = {
   create,
   update,
@@ -245,4 +252,5 @@ module.exports = {
   getSubscriberCount,
   getParticipantCount,
   updateComplete,
+  remove,
 };
