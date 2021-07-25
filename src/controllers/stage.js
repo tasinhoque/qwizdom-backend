@@ -11,7 +11,7 @@ const create = catchAsync(async (req, res) => {
 const remove = catchAsync(async (req, res) => {
   const { stageId } = req.params;
 
-  await quizService.remove(stageId);
+  await stageService.remove(stageId);
   await questionService.deleteByStage(stageId);
 
   res.status(httpStatus.NO_CONTENT).send();
