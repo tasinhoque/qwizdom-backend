@@ -71,6 +71,7 @@ const get = catchAsync(async (req, res) => {
     page,
     limit,
     populate: 'creator categories',
+    sortBy: 'totalParticipants:desc',
   });
   res.status(httpStatus.OK).send(quizzes);
 });
