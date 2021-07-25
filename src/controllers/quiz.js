@@ -175,10 +175,10 @@ const updateComplete = catchAsync(async (req, res) => {
   let j = 0;
   let i = 0;
 
-  for (const { questions, _id } of stages) {
+  for (const { questions, id } of stages) {
     let stage;
-    if (_id !== undefined) {
-      stage = await stageService.update(_id, {
+    if (id !== undefined) {
+      stage = await stageService.update(id, {
         serial: j,
       });
     } else {
@@ -191,11 +191,11 @@ const updateComplete = catchAsync(async (req, res) => {
 
     let localQuestions = [];
 
-    for (const { _id, ...questionFields } of questions) {
+    for (const { id, ...questionFields } of questions) {
       let question;
 
-      if (_id !== undefined) {
-        question = await questionService.update(_id, {
+      if (id !== undefined) {
+        question = await questionService.update(id, {
           stage: stage.id,
           ...questionFields,
           serial: i,
