@@ -216,7 +216,7 @@ const quizzesParticipatedIn = catchAsync(async (req, res) => {
   };
 
   const query = await quizResponseService.quizzesParticipatedIn(req.user.id);
-  const quizzes = query.map(({ quiz }) => quiz).filter(unique);
+  const quizzes = query.map(({ quiz }) => String(quiz)).filter(unique);
   const results = [];
 
   for (const quiz of quizzes) {
