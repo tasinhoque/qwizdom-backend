@@ -37,7 +37,7 @@ const get = catchAsync(async (req, res) => {
   const filter = {
     isTest,
     duration: { $exists: isTimeBound },
-    startTime: { $exists: isScheduled },
+    isScheduled: isScheduled === 'true',
     name: { $regex: name, $options: 'i' },
     categories: { $in: categories },
     isPublished,
