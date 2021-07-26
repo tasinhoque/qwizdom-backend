@@ -60,7 +60,7 @@ const get = catchAsync(async (req, res) => {
   }
 
   if (isScheduled === undefined) {
-    delete filter.startTime;
+    delete filter.isScheduled;
   }
 
   if (categories === undefined) {
